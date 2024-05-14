@@ -1,0 +1,56 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght00,100;0,200;0,300;0,400;0,58 8;8,600;8,700;0,888;8,900;1,100; 1,288;1,300;1,488;1,500;1,600;1,7 00;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/login.css'%}" />
+    <link rel="stylesheet" href="{%static 'css/home.css'%}" />
+    <link rel="stylesheet" href="{%static 'css/base.css'%}" />
+    <link rel="stylesheet" href="{% static 'css/product.css' %}" />
+    <title>Login - PDC2T E-Commerce Website</title>
+</head>
+
+<body>
+    {% block search %}
+    <h5>
+      <div class="section_category">
+        <span class="section_reactable"></span>
+        <p class="section_category_p">Result search for {{ searched }}</p>
+      </div>
+    </h5> <br />
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        {% for product in keys %}
+        <div class="swiper-slide">
+          <div class="card">
+            <div class="card_top">
+              <a href="{% url 'productDetail' proName=product.proName %}">
+                {% with product.image_set.first as first_image %}
+                  <img src="{{ first_image.image }}" alt="" class="card_img" />
+                {% endwith %}
+              </a>
+              <div class="card_top_icons">
+                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                <a href="{% url 'productDetail' proName=product.proName %}"><i class="uil uil-eye card_top_icon"></i></a>
+              </div>
+            </div>
+            <div class="card_body">
+              <h3 class="card_title">{{ product.proName }}</h3>
+              <p class="card_price">{{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    {% endblock search %}
+    
+</body>
+
+    <script src="{% static "js/main_login.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/validation_login.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/filter.js" %}"></script>
+{% endblock main-content %}

@@ -12,6 +12,10 @@
     margin-bottom: 5rem;
 }
 
+.nav-item {
+    list-style: none;
+}
+
 .filter_button {
     padding: 10px 20px;
     background-color: #677676;

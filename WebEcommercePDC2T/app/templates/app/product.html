@@ -1,8 +1,9 @@
 {% extends "app/base.html" %} {% load static %} {% block main-content %}
 <head>
   <!-- For this page -->
-  <link rel="stylesheet" href="{% static "css/home.css" %}" />
-  <link rel="stylesheet" href="{% static "css/product.css" %}" />
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/product.css' %}" />
+  <link rel="stylesheet" href="{%static 'css/base.css'%}" />
   <title>Product - PDC2T E-Commerce Website</title>
 </head>
 <!-- ===============HEADER============= -->
@@ -75,15 +76,23 @@
                 <p class="section_category_p">Tất Cả Sản Phẩm</p>
             </div>
             <h3 class="section_title">View All</h3>
-            <!-- lọc -->
-            <div class="filter_container">
-                <button class="filter_button">Lọc</button>
-                <div id="priceFilter">
-                    <label for="priceRange">Chọn khoảng giá:</label>
-                    <input type="range" id="priceRange" name="priceRange" min="0" max="15000000" step="500000">
-                    <span id="priceValue"></span>
-                </div>
-            </div>
+
+
+                    <!-- lọc -->
+                    <div class="filter_container">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Chọn khoảng giá
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'product_price_filter' cateName=category.cateName price_range='under_1tr' %}">Dưới 1tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_price_filter' cateName=category.cateName price_range='1tr_3tr' %}">1tr - 3tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_price_filter' cateName=category.cateName price_range='3tr_5tr' %}">3tr - 5tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_price_filter' cateName=category.cateName price_range='5tr_7tr' %}">5tr - 7tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_price_filter' cateName=category.cateName price_range='above_7tr' %}">Trên 7tr</a></li>
+                            </ul>
+                        </li>
+                    </div>
 
 
             <!-- sản phẩm -->

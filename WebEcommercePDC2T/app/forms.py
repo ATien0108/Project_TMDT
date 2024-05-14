@@ -5,6 +5,7 @@ from django.forms import widgets
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import validate_email
 from django import forms
+from .models import *
 
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False)
@@ -14,22 +15,22 @@ class RegisterForm(UserCreationForm):
         super(RegisterForm, self).__init__(*args, **kwargs)
 
         self.fields['username'].widget = widgets.TextInput(
-            attrs={'placeholder': "username", "class": "form-control"})
+            attrs={'placeholder': "Username", "class": "mt-10 form"})
         
         self.fields['email'].widget = widgets.EmailInput(
-            attrs={'placeholder': "email", "class": "form-control"})
+            attrs={'placeholder': "Email", "class": "mt-10 form"})
         
         self.fields['first_name'].widget = widgets.TextInput(
-            attrs={'placeholder': "first_name", "class": "form-control"})
+            attrs={'placeholder': "First Name", "class": "mt-10 form"})
         
         self.fields['last_name'].widget = widgets.TextInput(
-            attrs={'placeholder': "last_name", "class": "form-control"})
+            attrs={'placeholder': "Last Nname", "class": "mt-10 form"})
         
         self.fields['password1'].widget = widgets.PasswordInput(
-            attrs={'placeholder': "password", "class": "form-control"})
+            attrs={'placeholder': "Password", "class": "mt-10 form"})
         
         self.fields['password2'].widget = widgets.PasswordInput(
-            attrs={'placeholder': "repeat password", "class": "form-control"})
+            attrs={'placeholder': "Repeat Password", "class": "mt-10 form"})
 
     def clean_email(self):
         email = self.cleaned_data['email']

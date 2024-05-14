@@ -116,7 +116,8 @@ class Blog(models.Model):
     blogTitle = models.CharField(max_length=255)
     blogContent = models.TextField()
     blogDate = models.DateField()
-    blogImage = models.ImageField(upload_to="blog_images/", blank=True, null=True)
+    image_file = models.ImageField(upload_to="blog_images/", blank=True, null=True)  # Trường để lưu trữ hình ảnh tải lên
+    image_url = models.URLField(blank=True, null=True)  # Trường để lưu trữ URL của hình ảnh
 
     def __str__(self):
         return self.blogTitle
@@ -125,7 +126,8 @@ class BlogDetails(models.Model):
     blogDel_id = models.BigAutoField(primary_key=True)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='details')
     blogDelTitle = models.CharField(max_length=255)
-    image = models.ImageField(upload_to="blog_details_images/", blank=True, null=True)
+    image_file = models.ImageField(upload_to="blog_details_images/", blank=True, null=True)  # Trường để lưu trữ hình ảnh tải lên
+    image_url = models.URLField(blank=True, null=True)  # Trường để lưu trữ URL của hình ảnh
     description = models.TextField()
 
     def __str__(self):

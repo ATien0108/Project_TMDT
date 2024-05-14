@@ -57,14 +57,18 @@
         {% endif %}
         </ul>
         <div class="nav_items">
-          <form action="#" class="nav_form">
+
+          <form action= "{% url 'search' %}" method="POST" class="nav_form">
+            {% csrf_token %}
             <input
               type="text"
               class="nav_input"
               placeholder="Search here ....."
+              name="searched"
             />
-            <a href="#"><i class="uil uil-search nav_search"></i></a>
+            <button><i class="uil uil-search nav_search"></i></button>
           </form>
+
           <a href="#"><i class="uil uil-heart nav_heart"></i></a>
           <a href="{% url "cart" %}"><i class="uil uil-shopping-cart nav_cart"></i></a>
         </div>

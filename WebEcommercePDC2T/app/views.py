@@ -2,19 +2,23 @@ from django.db import connection
 from django.http import JsonResponse
 import numpy as np
 import matplotlib.pyplot as plt
+from httpx import Auth
+import os
+from django.conf import settings
 from .models import *
 import mpld3
 from django.contrib.auth import update_session_auth_hash, authenticate, login as auth_login, logout
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import Group
 from datetime import datetime
 from .forms import *
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.urls import reverse_lazy
+from .models import Product, Category, Brand
+from django.contrib.auth.hashers import check_password
 
 # Create your views here.
 def home(request):
@@ -25,6 +29,12 @@ def blog(request):
 
 def blogDetail(request):
     return render(request, 'app/blogDetail.html')
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST["searched"]
+        keys = Product.objects.filter(proName__contains = searched)
+    return render(request, 'app/search.html', {"searched":searched, "keys":keys})
 
 def login(request):
     if request.method == "POST":
@@ -67,20 +77,31 @@ def logoutPage(request):
     logout(request)
     return redirect('login')
 
-def forgotpass(request):
-    return render(request, 'app/forgotpass.html')
-
-def reset_password(request):
-    return render(request, 'app/reset_password.html')
-
 def checkout(request):
     return render(request, 'app/checkout.html')
 
 def cart(request):
     return render(request, 'app/cart.html')
 
-def product(request):
-    return render(request, 'app/product.html')
+def product(request, cateName, price_range=None):
+    category = get_object_or_404(Category, cateName=cateName)
+    products = Product.objects.filter(cate=category)
+
+    if price_range:
+        if price_range == 'under_1tr':
+            products = products.filter(proPrice__lt=1000000)
+        elif price_range == '1tr_3tr':
+            products = products.filter(proPrice__gte=1000000, proPrice__lt=3000000)
+        elif price_range == '3tr_5tr':
+            products = products.filter(proPrice__gte=3000000, proPrice__lt=5000000)
+        elif price_range == '5tr_7tr':
+            products = products.filter(proPrice__gte=5000000, proPrice__lt=7000000)
+        elif price_range == 'above_7tr':
+            products = products.filter(proPrice__gte=7000000)
+
+    context = {'products': products, 'category': category}
+
+    return render(request, 'app/product.html', context)
 
 def productDetail(request):
     return render(request, 'app/productDetail.html')
