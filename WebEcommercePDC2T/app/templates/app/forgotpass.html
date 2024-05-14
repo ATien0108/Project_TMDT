@@ -1,0 +1,43 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght00,100;0,200;0,300;0,400;0,58 8;8,600;8,700;0,888;8,900;1,100; 1,288;1,300;1,488;1,500;1,600;1,7 00;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/login.css'%}" />
+    <link rel="stylesheet" href="{%static 'css/base.css'%}" />
+    <title>Login - PDC2T E-Commerce Website</title>
+
+</head>
+    <div id="LoginAndRegistrationForm">
+        <h1 id="formTitle">Forgot Password</h1>
+        <form action="{% url 'reset_password' %}" method="post">
+            <div class="center mt-20">
+                <input
+                    class="input-text"
+                    type="email"
+                    id="forgotPassEmail"
+                    placeholder="Email Address"
+                />
+            </div>
+            <div class="center mt-20">
+                <input
+                    onclick="return ValidateForgotPasswordForm();"
+                    class="Submit-Btn"
+                    type="submit"
+                    value="Reset Password"
+                    id="PasswordResetBtn"
+                />
+            </div>
+        </form>
+    </div>
+
+    <p class="center mt-20 already-have-account">
+        Back to the
+        <a href="{% url "login" %}">Login</a> |
+        <a href="{% url "signup" %}">Sign Up</a>
+    </p>
+
+    <script src="{% static "js/main_login.js" %}" type="text/javascript"></script>
+    <script src="{% static "js/validation_login.js" %}" type="text/javascript"></script>
+{% endblock main-content %}

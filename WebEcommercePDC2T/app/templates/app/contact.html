@@ -1,0 +1,86 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+  <!--fav-icon-->
+  <link rel="short cut icon" href="images/image-about/fav-icon.svg" />
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
+  <script
+    src="https://kit.fontawesome.com/aa7454d09f.js"
+    crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="{%static 'css/contact.css'%}" />
+  <title>Contact - PDC2T E-Commerce Website</title>
+</head>
+<!--contact-->
+<section class="contact-form">
+  <h4 class="sectionHeader">Contact Us</h4>
+  <h1 class="heading">Liên Hệ Ngay với Chúng Tôi!</h1>
+  <p class="para">
+    Hãy liên hệ ngay với chúng tôi để được tư vấn và hỗ trợ tốt nhất về những
+    yêu cầu, thắc mắc, suy nghĩ của bạn!
+  </p>
+
+  <div class="contactForm">
+    <form action="#">
+      <h1 class="sub-heading">Hỗ trợ nhanh chóng !</h1>
+      <p class="para para2">
+        Nếu bạn cần được hỗ trợ, hãy để lại thông tin ở dưới đây.
+      </p>
+      <input type="text" class="input" placeholder="Họ và tên của bạn" />
+      <input type="text" class="input" placeholder="Email của bạn" />
+      <input type="text" class="input" placeholder="Vấn đề cần được hỗ trợ" />
+      <textarea
+        class="input"
+        cols="30"
+        rows="5"
+        placeholder="Cụ thể ghi ở đây..."
+      ></textarea>
+      <input type="submit" class="input submit" value="Gửi thông tin" />
+    </form>
+
+    <div class="map-container">
+      <div class="mapBg"></div>
+      <div class="map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d7836.958672811966!2d106.7723288!3d10.8511001!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1713773469794!5m2!1svi!2s"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="contactMethod">
+    <div class="method">
+      <i class="fa-solid fa-location-dot contactIcon"></i>
+      <article class="text">
+        <h1 class="sub-heading">Địa Chỉ</h1>
+        <p class="para">01, Võ Văn Ngân, Linh Chiểu, Thủ Đức</p>
+      </article>
+    </div>
+
+    <div class="method">
+      <i class="fa-solid fa-envelope contactIcon"></i>
+      <article class="text">
+        <h1 class="sub-heading">Email</h1>
+        <p class="para">Email: cuahangdientu@gmail.com</p>
+      </article>
+    </div>
+
+    <div class="method">
+      <i class="fa-solid fa-phone contactIcon"></i>
+      <article class="text">
+        <h1 class="sub-heading">Số Điện Thoại</h1>
+        <p class="para">0905015080</p>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock main-content %}

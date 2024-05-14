@@ -1,0 +1,113 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+  <!-- For this page -->
+  <link rel="stylesheet" href="{% static "css/cart.css" %}"/>
+  <link
+    rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous"
+  />
+  <title>Cart - PDC2T E-Commerce Website</title>
+</head>
+
+<!-- ===============CART============= -->
+<section class="section">
+  <div class="container">
+    <div class="cart_container">
+      <div class="cart_items_container">
+        <div class="cart_heading">
+          <div class="header_text">Cart</div>
+          <a href="#" class="remove_text"> Clear cart </a>
+        </div>
+        <div class="cart_sub_heading">
+          <div>Product</div>
+          <div>Quantity</div>
+          <div>Price</div>
+          <div>
+            <!-- Blank for removing check -->
+          </div>
+        </div>
+        <div class="cart_item">
+          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
+          <div>Iphone 15 Pro Max</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-minus"></i>
+          </a>
+          <div>1</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-plus"></i>
+          </a>
+          <div>$8.99</div>
+          <a href="#"> X </a>
+        </div>
+        <div class="cart_item">
+          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
+          <div>Iphone 15 Pro Max</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-minus"></i>
+          </a>
+          <div>1</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-plus"></i>
+          </a>
+          <div>$8.99</div>
+          <a href="#"> X </a>
+        </div>
+        <div class="cart_item">
+          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
+          <div>Iphone 15 Pro Max</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-minus"></i>
+          </a>
+          <div>1</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-plus"></i>
+          </a>
+          <div>$8.99</div>
+          <a href="#"> X </a>
+        </div>
+        <div class="cart_item">
+          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
+          <div>Iphone 15 Pro Max</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-minus"></i>
+          </a>
+          <div>1</div>
+          <a href="#" class="subadd_button">
+            <i class="fas fa-plus"></i>
+          </a>
+          <div>$8.99</div>
+          <a href="#"> X </a>
+        </div>
+      </div>
+      <div class="payment_details_container">
+        <div class="header_text">Payment Details</div>
+        <div class="sub_payment_details">
+          <div>Subtotal</div>
+          <div>$8.99</div>
+        </div>
+        <div class="sub_payment_details">
+          <div>Ship</div>
+          <div>$2.0</div>
+        </div>
+        <div class="sub_payment_details">
+          <div>Tax</div>
+          <div>$1.0</div>
+        </div>
+        <div class="breakline">
+          <!-- Break Beetween Contents -->
+        </div>
+        <div class="main_payment_details">
+          <div>Total</div>
+          <div>$11.99</div>
+        </div>
+        <a href="{% url "checkout" %}" class="checkout_button">
+          Continue to checkout
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock main-content %}

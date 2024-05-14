@@ -1,0 +1,119 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+    <link rel="shortcut icon" href="#">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght00,100;0,200;0,300;0,400;0,58 8;8,600;8,700;0,888;8,900;1,100; 1,288;1,300;1,488;1,500;1,600;1,7 00;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{%static 'css/blog.css'%}" />
+    <title>Blog - PDC2T E-Commerce Website</title>
+</head>
+<section id="blog">
+  <div class="blog-heading">
+    <h3>Blog</h3>
+  </div>
+
+  <div class="blog-container">
+    <!--box-1-->
+    <div class="blog-box">
+      <!--img-->
+      <div class="blog-img">
+        <img src="{%static "images/blog_1.png" %}" alt="Blog" />
+      </div>
+      <!--text-->
+      <div class="blog-text">
+        <span>31/10/2023</span>
+        <a href="{% url "blogDetail" %}" class="blog-title"
+          >Tiêu điểm cuối năm 2023: Tổng hợp sản phẩm MacBook và iMac mới nhất
+          của Apple</a
+        >
+        <a href="{% url "blogDetail" %}">Read</a>
+      </div>
+    </div>
+
+    <!--box-2-->
+    <div class="blog-box">
+      <!--img-->
+      <div class="blog-img">
+        <img src="{%static "images/blog_2.png" %}" alt="Blog" />
+      </div>
+      <!--text-->
+      <div class="blog-text">
+        <span>30/10/2023</span>
+        <a href="{% url "blogDetail" %}" class="blog-title"
+          >Dung Lượng Pin iPhone 15 Pro Max KHỦNG 4.422 mAh| Test thực tế ra
+          sao?</a
+        >
+        <a href="{% url "blogDetail" %}">Read</a>
+      </div>
+    </div>
+
+    <!--box-3-->
+    <div class="blog-box">
+      <!--img-->
+      <div class="blog-img">
+        <img src="{%static "images/blog_3.png" %}" alt="Blog" />
+      </div>
+      <!--text-->
+      <div class="blog-text">
+        <span>31/10/2023</span>
+        <a href="{% url "blogDetail" %}" class="blog-title"
+          >Thông số MacBook Air M2 15 inch 2023 có gì mới? Có đáng để “xuống
+          tiền?</a
+        >
+        <a href="{% url "blogDetail" %}">Read</a>
+      </div>
+    </div>
+
+    <!--box-4-->
+    <div class="blog-box">
+      <!--img-->
+      <div class="blog-img">
+        <img src="{%static "images/blog_3.png" %}" alt="Blog" />
+      </div>
+      <!--text-->
+      <div class="blog-text">
+        <span>31/10/2023</span>
+        <a href="{% url "blogDetail" %}" class="blog-title"
+          >Thông số MacBook Air M2 15 inch 2023 có gì mới? Có đáng để “xuống
+          tiền?</a
+        >
+        <a href="{% url "blogDetail" %}">Read</a>
+      </div>
+    </div>
+
+    <!--box-5-->
+    <div class="blog-box">
+      <!--img-->
+      <div class="blog-img">
+        <img src="{% static "images/blog_3.png" %}" alt="Blog" />
+      </div>
+      <!--text-->
+      <div class="blog-text">
+        <span>31/10/2023</span>
+        <a href="{% url "blogDetail" %}" class="blog-title"
+          >Thông số MacBook Air M2 15 inch 2023 có gì mới? Có đáng để “xuống
+          tiền?</a
+        >
+        <a href="{% url "blogDetail" %}">Read</a>
+      </div>
+    </div>
+
+    <!--box-6-->
+    <div class="blog-box">
+      <!--img-->
+      <div class="blog-img">
+        <img src="{%static "images/blog_3.png" %}" alt="Blog" />
+      </div>
+      <!--text-->
+      <div class="blog-text">
+        <span>31/10/2023</span>
+        <a href="{% url "blogDetail" %}" class="blog-title"
+          >Thông số MacBook Air M2 15 inch 2023 có gì mới? Có đáng để “xuống
+          tiền?</a
+        >
+        <a href="{% url "blogDetail" %}">Read</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock main-content %}

@@ -1,0 +1,316 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+  <!-- For this page -->
+  <link rel="stylesheet" href="{% static "css/home.css" %}" />
+  <link rel="stylesheet" href="{% static "css/product.css" %}" />
+  <title>Product - PDC2T E-Commerce Website</title>
+</head>
+<!-- ===============HEADER============= -->
+    <header class="header">
+        <div class="container header_container">
+            <div class="header_filter">
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-mobile-android"></i>Điện thoại
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-tablet"></i>Tablet
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-laptop"></i>Laptop
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-desktop"></i>PC, Màn hình
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-headphones-alt"></i>Tai nghe
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-mouse"></i>Chuột máy tính
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-watch"></i>Đồng hồ
+                </a>
+                <a href="{% url "product" %}" class="header_filter_link">
+                    <i class="uil uil-plug"></i>Phụ kiện
+                </a>
+            </div>
+            <div class="slideshow-container">
+                <div class="mySlides fade">
+                    <div class="numbertext">1 / 5</div>
+                    <img src="images/GALAXY-AI-WEEK-homepage.png" style="width:100%">
+                </div>
+
+                <div class="mySlides fade">
+                    <div class="numbertext">2 / 5</div>
+                    <img src="images/robot-hut-bui-roborock-s8-max-ultra-slide-11-04-24.png" style="width:100%">
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">3 / 5</div>
+                    <img src="images/Sliding air 13mb.png" style="width:100%">
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">4 / 5</div>
+                    <img src="images/sliding_ip15promax-hs.png" style="width:100%">
+                </div>
+                <div class="mySlides fade">
+                    <div class="numbertext">5 / 5</div>
+                    <img src="images/soundpeats_watch_4_sliding.png" style="width:100%">
+                </div>
+                <br>
+                <div style="text-align:center">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section_category">
+                <span class="section_reactable"></span>
+                <p class="section_category_p">Tất Cả Sản Phẩm</p>
+            </div>
+            <h3 class="section_title">View All</h3>
+            <!-- lọc -->
+            <div class="filter_container">
+                <button class="filter_button">Lọc</button>
+                <div id="priceFilter">
+                    <label for="priceRange">Chọn khoảng giá:</label>
+                    <input type="range" id="priceRange" name="priceRange" min="0" max="15000000" step="500000">
+                    <span id="priceValue"></span>
+                </div>
+            </div>
+
+
+            <!-- sản phẩm -->
+            <div class="product">
+                <!-- Dòng  1 -->
+                <div class="product_line1">
+                    <div class="swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <!-- 1 -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="card_top">
+                                        <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                        <div class="card_top_icons">
+                                            <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                            <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card_body">
+                                        <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                        <p class="card_price">500.000VND</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 2 -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="card_top">
+                                        <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                        <div class="card_top_icons">
+                                            <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                            <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card_body">
+                                        <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                        <p class="card_price">500.000VND</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 3 -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="card_top">
+                                        <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                        <div class="card_top_icons">
+                                            <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                            <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card_body">
+                                        <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                        <p class="card_price">500.000VND</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 4 -->
+                            <div class="swiper-slide">
+                                <div class="card">
+                                    <div class="card_top">
+                                        <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                        <div class="card_top_icons">
+                                            <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                            <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="card_body">
+                                        <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                        <p class="card_price">500.000VND</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- dòng 2 -->
+                    <div class="product_line2">
+                        <div class="swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <!-- 1 -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card_top">
+                                            <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                            <div class="card_top_icons">
+                                                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card_body">
+                                            <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                            <p class="card_price">500.000VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 2 -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card_top">
+                                            <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                            <div class="card_top_icons">
+                                                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card_body">
+                                            <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                            <p class="card_price">500.000VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 3 -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card_top">
+                                            <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                            <div class="card_top_icons">
+                                                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card_body">
+                                            <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                            <p class="card_price">500.000VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 4 -->
+                                <div class="swiper-slide">
+                                    <div class="card">
+                                        <div class="card_top">
+                                            <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                            <div class="card_top_icons">
+                                                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="card_body">
+                                            <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                            <p class="card_price">500.000VND</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- dòng  3 -->
+                        <div class="product_line3">
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <!-- 1 -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card_top">
+                                                <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                                <div class="card_top_icons">
+                                                    <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                    <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card_body">
+                                                <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                                <p class="card_price">500.000VND</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 2 -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card_top">
+                                                <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                                <div class="card_top_icons">
+                                                    <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                    <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card_body">
+                                                <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                                <p class="card_price">500.000VND</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 3 -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card_top">
+                                                <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                                <div class="card_top_icons">
+                                                    <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                    <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card_body">
+                                                <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                                <p class="card_price">500.000VND</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 4 -->
+                                    <div class="swiper-slide">
+                                        <div class="card">
+                                            <div class="card_top">
+                                                <a href="{% url "productDetail" %}"><img src="{% static "images/iphone-15-pro-max_3.png" %}" alt="" class="card_img"></a>
+                                                <div class="card_top_icons">
+                                                    <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                                    <a href="{% url "productDetail" %}"><i class="uil uil-eye card_top_icon"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="card_body">
+                                                <h3 class="card_title">iPhone 15 Pro Max 256GB | Chính hãng VN/A</h3>
+                                                <p class="card_price">500.000VND</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    </section>
+
+    <div class="pagination">
+        <ul>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <!-- Vào các trang khác -->
+            <li><a href="#">Next</a></li>
+        </ul>
+    </div>
+    <script src="{% static "js/filter.js" %}"></script>
+{% endblock main-content %}

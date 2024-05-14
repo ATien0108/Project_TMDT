@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    pad: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 30px;
+    margin: 5rem 0 10rem 0;
+}
+
+.row a {
+    color: #000;
+}
+
+.service {
+    text-align: center;
+    padding: 25px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background: transparent;
+    transition: transform 0.5s, background 0.5s;
+}
+
+.service i {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #303ef7;
+}
+
+.service h2 {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.service:hover {
+    background: #303ef7;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.service:hover i,
+.service:hover p,
+.service:hover h2 {
+    color: #fff;
+}
+
+/*---------------------*/
+.intro {
+    width: 1290px;
+    max-width: 95%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 5rem;
+}
+
+.all-text {
+    width: 600px;
+    max-width: 100%;
+    padding: 0 10px;
+}
+
+.all-text h1 {
+    font-size: 65px;
+    color: #111111;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.all-text p {
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: #000;
+    line-height: 30px;
+    margin-bottom: 8px;
+    text-align: center;
+}
