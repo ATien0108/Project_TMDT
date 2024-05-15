@@ -50,12 +50,9 @@ class ProductSpecification(models.Model):
     spec8 = models.CharField(max_length=255, blank=True, null=True)
     spec9 = models.CharField(max_length=255, blank=True, null=True)
     spec10 = models.CharField(max_length=255, blank=True, null=True)
-    spec11 = models.CharField(max_length=255, blank=True, null=True)
-    spec12 = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f"{self.product.proName} Specifications"
-
+        return self.product.proName
 
 class Image(models.Model):
     pro = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -73,12 +70,20 @@ class CartItem(models.Model):
     quantity = models.IntegerField()
     
 class Order(models.Model):
+    ORDER_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('processing', 'Processing'),
+        ('shipped', 'Shipped'),
+        ('delivered', 'Delivered'),
+        ('return', 'Return'),
+        ('cancelled', 'Cancelled'),
+        ('completed', 'Completed'),
+    ]
+
     order_id = models.BigAutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    inforDeli = models.ForeignKey('InforDelivery', on_delete=models.CASCADE)
     orderDate = models.DateField()
-    orderStatus = models.CharField(max_length=255)
-    payment = models.ForeignKey('Payment', on_delete=models.CASCADE)
+    orderStatus = models.CharField(max_length=255, choices=ORDER_STATUS_CHOICES)
 
 class OrderItem(models.Model):
     orderItem_id = models.BigAutoField(primary_key=True)
@@ -94,16 +99,31 @@ class InforDelivery(models.Model):
     district = models.CharField(max_length=255)
     street = models.CharField(max_length=255)
     phoneNumber = models.CharField(max_length=20)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.receiverName
 
 class Payment(models.Model):
+    PAYMENT_STATUS_CHOICES = [
+        ('unpaid', 'Unpaid'),
+        ('refunded', 'Refunded'),
+        ('paid', 'Paid'),
+    ]
+
     payment_id = models.BigAutoField(primary_key=True)
     paymentDate = models.DateField()
-    paymentStatus = models.CharField(max_length=255)
+    paymentStatus = models.CharField(max_length=255, choices=PAYMENT_STATUS_CHOICES)
     payMethod = models.ForeignKey('PaymentMethod', on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
 
 class PaymentMethod(models.Model):
     payMethod_id = models.BigAutoField(primary_key=True)
     payName = models.CharField(max_length=255)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.payName
 
 class Rating(models.Model):
     rate_id = models.BigAutoField(primary_key=True)
