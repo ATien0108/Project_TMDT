@@ -32,8 +32,8 @@ class ProductSpecificationInline(admin.StackedInline):
     extra = 0
 
 class ProductSpecificationAdmin(admin.ModelAdmin):
-    list_display = ('prod_spec_id', 'product', 'spec1', 'spec2', 'spec3', 'spec4', 'spec5', 'spec6', 'spec7', 'spec8', 'spec9', 'spec10')
-    search_fields = ('product__proName', 'spec1', 'spec2', 'spec3', 'spec4', 'spec5', 'spec6', 'spec7', 'spec8', 'spec9', 'spec10')
+    list_display = ('prod_spec_id', 'product', 'title', 'spec')
+    search_fields = ('product__proName', 'title', 'spec')
     list_filter = ('product__proName',)
 
 admin.site.register(ProductSpecification, ProductSpecificationAdmin)

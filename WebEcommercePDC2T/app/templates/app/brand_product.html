@@ -1,0 +1,133 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block main-content %}
+<head>
+  <!-- For this page -->
+  <link rel="stylesheet" href="{% static "css/home.css" %}" />
+  <link rel="stylesheet" href="{% static "css/product.css" %}" />
+  <title>Products by {{ brand.braName }} - PDC2T E-Commerce Website</title>
+</head>
+<!-- ===============HEADER============= -->
+<header class="header">
+    <div class="container header_container">
+        <div class="header_filter">
+            <a href="{% url 'product' cateName='DienThoai' %}" class="header_filter_link">
+                <i class="uil uil-mobile-android"></i>Điện thoại
+            </a>
+            <a href="{% url 'product' cateName='Tablet' %}" class="header_filter_link">
+                <i class="uil uil-tablet"></i>Tablet
+            </a>
+            <a href="{% url 'product' cateName='Laptop' %}" class="header_filter_link">
+                <i class="uil uil-laptop"></i>Laptop
+            </a>
+            <a href="{% url 'product' cateName='Monitor' %}" class="header_filter_link">
+                <i class="uil uil-desktop"></i>PC, Màn hình
+            </a>
+            <a href="{% url 'product' cateName='HeadPhone' %}" class="header_filter_link">
+                <i class="uil uil-headphones-alt"></i>Tai nghe
+            </a>
+            <a href="{% url 'product' cateName='Mouse' %}" class="header_filter_link">
+                <i class="uil uil-mouse"></i>Chuột máy tính
+            </a>
+            <a href="{% url 'product' cateName='Watch' %}" class="header_filter_link">
+                <i class="uil uil-watch"></i>Đồng hồ
+            </a>
+            <a href="{% url 'product' cateName='Accessory' %}" class="header_filter_link">
+                <i class="uil uil-plug"></i>Phụ kiện
+            </a>
+        </div>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 5</div>
+                <img src="{% static "images/GALAXY-AI-WEEK-homepage.png" %}" style="width:100%">
+            </div>
+
+            <div class="mySlides fade">
+                <div class="numbertext">2 / 5</div>
+                <img src="{% static "images/robot-hut-bui-roborock-s8.png" %}" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">3 / 5</div>
+                <img src="{% static "images/Sliding air 13mb.png" %}" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">4 / 5</div>
+                <img src="{% static "images/sliding_ip15promax-hs.png" %}" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <div class="numbertext">5 / 5</div>
+                <img src="{% static "images/soundpeats_watch_4_sliding.png" %}" style="width:100%">
+            </div>
+            <br>
+            <div style="text-align:center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </div>
+</header> 
+
+<section class="section">
+    <div class="container">
+        <div class="section_category">
+            <span class="section_reactable"></span>
+            <h3 class="section_title">Thương hiệu: {{ brand.braName }}</h3>
+        </div>
+
+                    <!-- lọc -->
+                    <div class="filter_container">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Chọn khoảng giá
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'product_brand_price_filter' braName=brand.braName price_range='under_1tr' %}">Dưới 1tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_brand_price_filter' braName=brand.braName price_range='1tr_3tr' %}">1tr - 3tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_brand_price_filter' braName=brand.braName price_range='3tr_5tr' %}">3tr - 5tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_brand_price_filter' braName=brand.braName price_range='5tr_7tr' %}">5tr - 7tr</a></li>
+                                <li><a class="dropdown-item" href="{% url 'product_brand_price_filter' braName=brand.braName price_range='above_7tr' %}">Trên 7tr</a></li>
+                            </ul>
+                        </li>
+                    </div>
+
+        <!-- Swiper -->
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for product in products %}
+                {% if forloop.counter0|divisibleby:4 %} <!-- Check if index is divisible by 4 -->
+            </div> <!-- Close previous swiper-slide -->
+
+            <div class="swiper-wrapper"> 
+                {% endif %}
+                <div class="swiper-slide">
+                    <div class="card">
+                        <div class="card_top">
+                            <a href="{% url 'productDetail' proName=product.proName %}">
+                                {% with product.image_set.first as first_image %}
+                                <img src="{{ first_image.image_url }}" alt="" class="card_img" />
+                                {% endwith %}
+                            </a>
+                            <div class="card_top_icons">
+                                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                                <a href="{% url 'productDetail' proName=product.proName %}"><i class="uil uil-eye card_top_icon"></i></a>
+                            </div>
+                        </div>
+                        <div class="card_body">
+                            <h3 class="card_title">{{ product.proName }}</h3>
+                            <p class="card_price">{{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                {% if forloop.last or forloop.counter0|add:1|divisibleby:4 %} <!-- Check if it's the last product or next index is divisible by 4 -->
+
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main-content %}

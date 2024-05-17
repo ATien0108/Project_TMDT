@@ -40,8 +40,6 @@
         <ul class="nav_list">
           <li class="nav_item"><a href="{% url "home" %}" class="nav_link">Home</a></li>
           <li class="nav_item"><a href="{% url "blog" %}" class="nav_link">Blog</a></li>
-          <li class="nav_item"><a href="{% url "about" %}" class="nav_link">About</a></li>
-          <li class="nav_item"><a href="{% url "contact" %}" class="nav_link">Contact</a></li>
           {% if user.is_authenticated %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +55,7 @@
         {% endif %}
         </ul>
         <div class="nav_items">
-
+          
           <form action= "{% url 'search' %}" method="POST" class="nav_form">
             {% csrf_token %}
             <input
@@ -68,7 +66,6 @@
             />
             <button><i class="uil uil-search nav_search"></i></button>
           </form>
-
           <a href="#"><i class="uil uil-heart nav_heart"></i></a>
           <a href="{% url "cart" %}"><i class="uil uil-shopping-cart nav_cart"></i></a>
         </div>
@@ -98,12 +95,6 @@
         </li>
         <li class="mobile_nav_item">
           <a href="{% url "blog" %}" class="mobile_nav_link">Blog</a>
-        </li>
-        <li class="mobile_nav_item">
-          <a href="{% url "about" %}" class="mobile_nav_link">About</a>
-        </li>
-        <li class="mobile_nav_item">
-          <a href="{% url "contact" %}" class="mobile_nav_link">Contact</a>
         </li>
         <li class="mobile_nav_item">
           <a href="{% url "login" %}" class="mobile_nav_link">Sign Up</a>
@@ -176,3 +167,4 @@
     <script src="{% static "js/dropdown.js" %}"></script>
   </body>
 </html>
+`

@@ -107,7 +107,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'webpdc2t',     # Tên của cơ sở dữ liệu MySQL
         'USER': 'root',   # Tên người dùng MySQL
-        'PASSWORD': 'duyphatst123', # Mật khẩu MySQL
+        'PASSWORD': 'Tt010803', # Mật khẩu MySQL
         'HOST': 'localhost', # Địa chỉ host của MySQL Server
         'PORT': '3306',      # Port MySQL (mặc định là 3306)
     }

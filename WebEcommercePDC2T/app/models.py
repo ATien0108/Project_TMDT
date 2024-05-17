@@ -39,17 +39,9 @@ class Product(models.Model):
 
 class ProductSpecification(models.Model):
     prod_spec_id = models.BigAutoField(primary_key=True)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    spec = models.CharField(max_length=255, blank=True, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    spec1 = models.CharField(max_length=255, blank=True, null=True)
-    spec2 = models.CharField(max_length=255, blank=True, null=True)
-    spec3 = models.CharField(max_length=255, blank=True, null=True)
-    spec4 = models.CharField(max_length=255, blank=True, null=True)
-    spec5 = models.CharField(max_length=255, blank=True, null=True)
-    spec6 = models.CharField(max_length=255, blank=True, null=True)
-    spec7 = models.CharField(max_length=255, blank=True, null=True)
-    spec8 = models.CharField(max_length=255, blank=True, null=True)
-    spec9 = models.CharField(max_length=255, blank=True, null=True)
-    spec10 = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.product.proName

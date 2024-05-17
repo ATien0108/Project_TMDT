@@ -19,21 +19,48 @@ from django.urls import reverse
 from django.urls import reverse_lazy
 from .models import Product, Category, Brand
 from django.contrib.auth.hashers import check_password
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
+
 
 # Create your views here.
 def home(request):
-    return render(request, 'app/home.html')
+    # Lấy tất cả các danh mục
+    categories = Category.objects.all()
+    brands = Brand.objects.all()
+    context = {
+        'categories': categories,
+        'brands': brands
+    }
+    return render(request, 'app/home.html', context)
+
 
 def blog(request):
-    return render(request, 'app/blog.html')
+    all_blogs = Blog.objects.all() 
+    paginator = Paginator(all_blogs, 8)  # Số lượng bài blog trên mỗi trang
+    page_number = request.GET.get('page')  # Lấy số trang hiện tại từ query parameter 'page'
+    page_obj = paginator.get_page(page_number)  # Lấy object paginator cho trang hiện tại
+    context = {
+        'page_obj': page_obj,
+    }
+    return render(request, 'app/blog.html', context)
 
-def blogDetail(request):
-    return render(request, 'app/blogDetail.html')
+def blogDetail(request, blogTitle):
+    blog = get_object_or_404(Blog, blogTitle=blogTitle)
+    blog_details = BlogDetails.objects.filter(blog=blog)
+    context = {
+        'blog': blog,
+        'blog_details': blog_details,
+    }
+    return render(request, 'app/blogDetail.html', context)
 
 def search(request):
+    searched = ''
+    keys = None
     if request.method == "POST":
         searched = request.POST["searched"]
-        keys = Product.objects.filter(proName__contains = searched)
+        # Thực hiện truy vấn không phân biệt chữ hoa chữ thường
+        keys = Product.objects.filter(Q(proName__icontains=searched))
     return render(request, 'app/search.html', {"searched":searched, "keys":keys})
 
 def login(request):
@@ -100,17 +127,39 @@ def product(request, cateName, price_range=None):
             products = products.filter(proPrice__gte=7000000)
 
     context = {'products': products, 'category': category}
-
     return render(request, 'app/product.html', context)
 
-def productDetail(request):
-    return render(request, 'app/productDetail.html')
+def brand_product(request, braName, price_range=None):
+    brand = get_object_or_404(Brand, braName=braName)
+    products = Product.objects.filter(brand=brand)
 
-def about(request):
-    return render(request, 'app/about.html')
+    if price_range:
+        if price_range == 'under_1tr':
+            products = products.filter(proPrice__lt=1000000)
+        elif price_range == '1tr_3tr':
+            products = products.filter(proPrice__gte=1000000, proPrice__lt=3000000)
+        elif price_range == '3tr_5tr':
+            products = products.filter(proPrice__gte=3000000, proPrice__lt=5000000)
+        elif price_range == '5tr_7tr':
+            products = products.filter(proPrice__gte=5000000, proPrice__lt=7000000)
+        elif price_range == 'above_7tr':
+            products = products.filter(proPrice__gte=7000000)
+            
+    context = {'products': products, 'brand': brand}
+    return render(request, 'app/brand_product.html', context)
 
-def contact(request):
-    return render(request, 'app/contact.html')
+def productDetail(request, proName):
+    
+    product = get_object_or_404(Product, proName = proName)
+    product_specs = ProductSpecification.objects.filter(product=product)
+
+    context = {
+        'product': product,
+        'product_specs': product_specs,
+    }
+    
+    return render(request, 'app/productDetail.html', context)
+
 
 def profile(request):
     return render(request, 'app/profile.html')

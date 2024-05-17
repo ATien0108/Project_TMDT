@@ -1,7 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
@@ -16,7 +16,7 @@ ul {
 body {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
+    font-family: 'Poppins', sans-serif;
 }
 
 #blog {
@@ -47,10 +47,8 @@ body {
 
 .blog-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin: 20px 0px;
-    flex-wrap: wrap;
 }
 
 .blog-box {
@@ -61,17 +59,14 @@ body {
     margin: 20px;
 }
 
-
 .blog-img {
-    width: 100%;
-    height: auto;
+    text-align: center;
 }
 
 .blog-img img {
-    width: 800px;
-    height: 400px;
-    object-fit: cover;
-    object-position: center;
+    display: inline-block;
+    max-width: 50%;
+    height: auto;
 }
 
 .blog-text {
@@ -81,8 +76,7 @@ body {
 }
 
 .blog-text span {
-    color:
-        #f33c3c;
+    color: #f33c3c;
     font-size: 0.9rem;
 }
 
@@ -118,7 +112,7 @@ body {
     }
 }
 
-@media (max-width:550px) {
+@media (max-width: 550px) {
     .blog-box {
         margin: 20px 10px;
         width: 100%;
@@ -127,4 +121,15 @@ body {
     #blog {
         padding: 20px;
     }
+}
+
+/* New CSS for blogDelTitle */
+.blog-detail-item h2 {
+    font-weight: bold;
+    font-size: 2.3rem; /* Adjust this value as needed */
+}
+
+.blog-detail-item h1 {
+    font-weight: bold;
+    font-size: 3.5rem; /* Adjust this value as needed */
 }

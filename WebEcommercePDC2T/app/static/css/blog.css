@@ -1,7 +1,7 @@
 * {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
@@ -16,7 +16,7 @@ ul {
 body {
     margin: 0px;
     padding: 0px;
-    font-family: poppins;
+    font-family: 'Poppins', sans-serif;
 }
 
 #blog {
@@ -55,12 +55,17 @@ body {
 
 .blog-box {
     width: 350px;
-    height: auto;
+    height: 500px;
     background-color: #ffffff;
     border: 1px solid #ececec;
     margin: 20px;
+    transition: all ease 0.3s;
 }
 
+.blog-box:hover {
+    transform: translateY(-5px); /* Add slight lift on hover */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1); /* Add shadow on hover */
+}
 
 .blog-img {
     width: 100%;
@@ -68,8 +73,8 @@ body {
 }
 
 .blog-img img {
-    width: 350px;
-    height: 200px;
+    width: 100%;
+    height: 200px; /* Set fixed height for image */
     object-fit: cover;
     object-position: center;
 }
@@ -81,21 +86,48 @@ body {
 }
 
 .blog-text span {
-    color:
-        #f33c3c;
-    font-size: 0.9rem;
+    color: #f33c3c;
+    font-size: 1.5rem;
 }
 
+.big-number {
+    font-size: 20px; /* Kích thước lớn hơn */
+    margin: 0 10px; /* Khoảng cách xa ra */
+}
+
+/* Style cho button */
+.page-btn {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+/* Style cho button khi được chọn */
+.page-btn.active {
+    background-color: #ccc; /* Màu nền hoặc kiểu dáng khác để chỉ ra trạng thái active */
+}
+
+
 .blog-text .blog-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #272727;
+    margin-bottom: 10px;
+}
+
+.blog-text .blog-content {
     font-size: 1.3rem;
     font-weight: 500;
     color: #272727;
 }
 
-.blog-text .blog-title:hover {
-    color: #f33c3c;
-    transform: all ease 0.3s;
+.blog-text .blog-content:hover {
+    color: #272727; /* Set the color back to the original value on hover */
 }
+
 
 .blog-text a {
     color: #0f0f0f;
@@ -103,7 +135,6 @@ body {
 
 .blog-text a:hover {
     color: #f33c3c;
-    transform: all ease 0.3s;
 }
 
 @media (max-width: 1250px) {
@@ -118,10 +149,10 @@ body {
     }
 }
 
-@media (max-width:550px) {
+@media (max-width: 550px) {
     .blog-box {
         margin: 20px 10px;
-        width: 100%;
+        width: calc(100% - 20px);
     }
 
     #blog {

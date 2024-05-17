@@ -1,38 +1,57 @@
-{% extends "app/base.html" %} {% load static %} {% block main-content %}
+{% extends "app/base.html" %}
+{% load static %}
+{% block main-content %}
 <head>
     <link rel="shortcut icon" href="#">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css?family=Poppins:ital, wght00,100;0,200;0,300;0,400;0,58 8;8,600;8,700;0,888;8,900;1,100; 1,288;1,300;1,488;1,500;1,600;1,7 00;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{%static 'css/blogDetail.css'%}" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/blogDetail.css' %}" />
     <title>Blog Detail - PDC2T E-Commerce Website</title>
 </head>
 <section id="blog">
-
-        <div class="blog-container">
-                <div class="blog-img">
-                    <img src="{% static "images/blog_1.png" %}" alt="Blog">
-                </div>              
-                </div>
-                
-                <div class="blog-box"><div itemscope="" itemtype="https://schema.org/NewsArticle">
-                    <div class="page-title">
-                        <h1 itemprop="headline" id="toc-title">Tiêu điểm cuối năm 2023: Tổng hợp sản phẩm MacBook và iMac mới nhất của Apple</h1>
-                    </div>
-                    <meta itemprop="image" content="https://shopdunk.com/images/thumbs/0022649_apple-wwdc-2023-logo_1600.jpeg">
-                    <meta itemprop="Description"><meta itemprop="url" content="https://shopdunk.com/tieu-diem-cuoi-nam-2023-tong-hop-san-pham-moi-cua-apple">
-                    <meta itemprop="dateModified" content="31/10/2023">
-                    <div class="news-date">
-                        <span itemprop="datePublished" content="31/10/2023"> 31/10/2023 </span>
-                    </div>
-                </div>
-                <div class="page-body">
-                    <div class="news-body">
-                        <p><span style="font-weight:400">Sáng ngày 31/10, tại sự kiện Scary Fast mới nhất, những mẫu sản phẩm mới Mac của Apple đã chính thức ra mắt, tạo một làn sóng gây chấn động cộng đồng công nghệ toàn cầu. Sự kiện ra mắt sản phẩm này đã thu hút sự quan tâm của đông đảo người dùng và giới chuyên môn. Cả thế giới đang đổ dồn con mắt vào siêu phẩm MacBook Pro M3 14" và 16"cùng iMac M3.</span></p><h2><strong>1. MacBook Pro M3 14 inch và MacBook Pro 16 inch</strong></h2><p><span style="font-weight:400">Sản phẩm MacBook Pro mới ra mắt bao gồm 2 phiên bản MacBook Pro M3 14 inch và MacBook Pro M3 16 inch với một số tính năng và cải tiến xuất sắc.</span></p><p><span style="font-weight:400">Cả hai mẫu MacBook Pro này đều được trang bị chip M3 mới nhất của Apple, mang đến hiệu năng mạnh mẽ và khả năng tiết kiệm năng lượng vượt trội.</span></p><h4><strong>Thiết kế</strong></h4><p><span style="font-weight:400">Thiết kế mới sang trọng. với vỏ nhôm nguyên khối, với các góc cạnh được bo tròn. Máy có hai màu sắc chính là bạc và xám than.</span></p><h3><strong>Màu sắc</strong></h3><p><span style="font-weight:400">Máy có hai màu sắc chính là bạc và xám than cực cáng trọng</span></p><h3><strong>Thông số kỹ thuật</strong></h3><h4><strong>Màn Hình</strong></h4><p><span style="font-weight:400">MacBook Pro M3 có hai kích thước màn hình là 14 inch và 16 inch. Cả hai kích thước màn hình đều sử dụng tấm nền Liquid Retina XDR, với độ phân giải 3024 x 1964 pixel và tần số quét 120Hz. Màn hình Liquid Retina XDR tối ưu những vùng sáng, kể cả hình ảnh vùng tối vẫn chi tiết, sắc nét, độ tương phản cao và màu sắc chính xác.</span></p><p><span style="font-weight:400">Đặc biệt, với tần số quét 120Hz hình ảnh hiển thị mượt mà và trơn tru hơn. Đặc biệt mãn nhãn khi chơi trò chơi điện tử đồ họa đẹp mắt, hay và xem video chất lượng.</span></p><h4><strong>Chip</strong></h4><p><span style="font-weight:400">Chip M3, M3 Pro và M3 Max đều là con chip mới nhất của Apple, được sản xuất trên tiến trình 3nm. Chip M3 là dòng chip tiên tiến nhất từng được thiết kế cho máy tính cá nhân, hơn hết, hiệu năng CPU và GPU mạnh mẽ hơn so với chip M2.</span></p><h4><strong>Pin</strong></h4><p><span style="font-weight:400">Thời gian xem video lên đến 22 giờ và thời gian duyệt web trên mạng không dây lên đến 15 giờ.</span></p><h3><strong>Camera &amp; loa</strong></h3><p><span style="font-weight:400">Camera FaceTime HD 1080p, với cảm biến lớn và khẩu độ lớn hơn, giúp cải thiện chất lượng hình ảnh trong điều kiện ánh sáng yếu. Tnh năng Center Stage, giúp giữ cho người dùng luôn ở trung tâm khung hình khi họ di chuyển. Song song hệ thống loa 6 loa, với âm thanh nổi Dolby Atmos truyền tải âm thanh sống động và mạnh mẽ,&nbsp;</span></p><h3><strong>Bàn phím và Touch Bar</strong></h3><p><span style="font-weight:400">Bàn phím được thiết kế với các phím bấm có độ nảy tốt và độ chính xác cao. Touch Bar nhạy, gần như không có độ trễ, dễ dàng thao tác điều khiển máy.</span></p><h3><strong>Cổng kết nối</strong></h3><p><span style="font-weight:400">MacBook Pro M3 có ba cổng Thunderbolt 4, một cổng HDMI và một cổng MagSafe 3.</span></p><h3><strong>Một số tính năng khác</strong></h3><h4><strong>Công nghệ dò tia tốc độ cao bằng phần cứng</strong></h4><p><span style="font-weight:400">MacBook Pro giờ đây được trang bị công nghệ dò tia tốc độ cao bằng phần cứng, mang đến hiệu năng kết xuất nhanh hơn đến 2,5 giờ và giúp các ứng dụng chuyên nghiệp và trò chơi hiển thị chân thực hơn bao giờ hết.</span></p><h4><strong>Cảm biến Touch ID</strong></h4><p><span style="font-weight:400">Touch ID bảo vệ dữ liệu và thông tin cá nhân của người dùng, cực kỳ an toàn và tiện lợi, chỉ cần chạm ngón tay mà không phải nhớ mật khẩu.</span></p><p>&nbsp;</p><h2><strong>2. iMac M3</strong></h2><p><span style="font-weight:400">iMac M3 - chiếc máy tính để bàn All-in-One mới của Apple mở ra một thế giới giải trí, sáng tạo không giới hạn.</span></p><h3><strong>Thiết kế</strong></h3><p><span style="font-weight:400">Thiết kế đẹp và hiện đại viền mỏng chỉ 11,5mm, được làm bằng nhôm nguyên khối càng sang trọng và chắc chắn. Chân đế hình chữ V, cố định cho máy đứng vững.&nbsp;</span></p><h3><strong>Màu sắc</strong></h3><p><span style="font-weight:400">7 màu rực rỡ: Xanh lá, vàng, cam, hồng, tím, xanh dương, bạc</span></p><h3><strong>Thông số kỹ thuật</strong></h3><h4><strong>Màn Hình</strong></h4><p><span style="font-weight:400">Màn hình Liquid Retina diện tích lớn 24 inch với độ phân giải 4,5K (4480 x 2520 pixel), mang đến một khung hình rộng rãi và chi tiết sắc nét. Độ sáng 500 nit giúp màn hình hiển thị rõ ràng ngay cả trong điều kiện ánh sáng mạnh. Dải màu rộng P3 biến mọi thứ trước mắt trở nên sống động và chân thực hơn.</span></p><p><strong>Chip</strong></p><p><span style="font-weight:400">Bước nhảy vọt về hiệu năng nhờ chip M3 cực khủng.&nbsp; Chip M3 có hiệu năng CPU gồm 10 lõi, có thể xử lý các tác vụ như chỉnh sửa video, dựng hình 3D và chơi game một cách mượt mà hơn. Dễ dàng chỉnh sửa video 4K ở tốc độ 30 khung hình/giây cũng như chơi game AAA ở cài đặt đồ họa cao mà không bị giật lag.</span></p><p><span style="font-weight:400">Chip M3 có hiệu năng GPU nhanh hơn 30% so với chip M2. Điều này có nghĩa là iMac M3 có thể xử lý các tác vụ đồ họa như chỉnh sửa ảnh, thiết kế đồ họa và chơi game một cách mượt mà hơn.</span></p><p><span style="font-weight:400">Đây là con chip mang lại hiệu năng mạnh mẽ và tiết kiệm điện cho iMac M3. Tác vụ nào máy cũng đáp ứng tốt từ chỉnh sửa video, dựng hình 3D, chơi game đến chỉnh sửa ảnh, thiết kế đồ họa và xử lý các tác vụ trí tuệ nhân tạo.</span></p><p><strong>Pin</strong></p><p><span style="font-weight:400">Thời lượng pin dùng cả ngày lên tới 26 giờ.Tuy nhiên, thời lượng pin sẽ khác nhau tùy theo cách sử dụng và cấu hình</span></p><h3><strong>Camera &amp; hệ thống loa</strong></h3><p><span style="font-weight:400">Camera và hệ thống âm thanh trên iMac M3 đều là những điểm mạnh của máy. Camera FaceTime HD 1080p quay video ở độ phân giải 1080p ở tốc độ 30 khung hình/giây, đem lại chất lượng hình ảnh tốt, phù hợp cho các cuộc gọi video, hội nghị trực tuyến và các tác vụ khác yêu cầu video. Đồng thời khi hệ thống âm thanh 6 loa mang lại âm thanh chất lượng cao ngập tràn không gian.</span></p><h3><strong>Bộ nhớ</strong></h3><p><span style="font-weight:400">Bộ nhớ RAM lên đến 16GB và ổ cứng SSD lên đến 2TB.</span></p><h3><strong>Kết nối</strong></h3><p><span style="font-weight:400">iMac M3 có các cổng Thunderbolt 4, USB-C, HDMI và giắc cắm tai nghe</span></p><p>&nbsp;</p><h2><strong>Giá bán các sản phẩm mới tại PDC2T</strong></h2><p><span style="font-weight:400">Giá cả luôn là điều mà các khách hàng quan tâm mỗi khi sản phẩm mới ra mắt. Hiện nay, sản phẩm đã có giá chính thức và đi kèm nhiều ưu đãi cực đã:&nbsp;</span></p><h3><strong>MacBook Pro M3</strong></h3><ul><li style="font-weight:400" aria-level="1"><strong>MacBook Pro 14 inch M3</strong><span style="font-weight:400"> 2023 phiên bản 8GB RAM | 512GB SSD: 39.999.000đ</span></li><li style="font-weight:400" aria-level="1"><strong>MacBook Pro 16 inch M3</strong><span style="font-weight:400"> 2023 phiên bản 8GB RAM | 512GB SSD: 64.999.000₫</span></li></ul><h2>&nbsp;</h2><h3><strong>Địa chỉ mua sản phẩm Apple mới chính hãng&nbsp;</strong></h3><p><span style="font-weight:400">Nếu bạn đang tìm kiếm một cơ sở uy tín để mua sản phẩm Apple mới chính hãng, PDC2T là sự lựa chọn đáng tin cậy mà bạn không thể bỏ lỡ. Với vị thế là đại lý ủy quyền hàng đầu của Apple tại Việt Nam, PDC2T cam kết chất lượng sản phẩm và cung cấp giá cả cạnh tranh. Đặc biệt, PDC2T luôn có các chương trình khuyến mãi hấp dẫn cho khách hàng hàng tháng.</span></p><p><span style="font-weight:400">Trở thành người nhận thông tin mua sản phẩm </span><strong>MacBook và iMac </strong><span style="font-weight:400">sớm nhất </span><strong>VỚI DEAL HẤP DẪN </strong><span style="font-weight:400">tại PDC2T.&nbsp;</span></p><p><span style="font-weight:400">- Giảm tới 1.000.000đ qua cổng thanh toán&nbsp;</span></p><p><span style="font-weight:400">- Trả góp lãi suất 0%&nbsp;</span></p><p><span style="font-weight:400">- Có bảo hành Apple&nbsp;</span></p><p><span style="font-weight:400">- 50 Store trên cả nước&nbsp;</span></p><p><span style="font-weight:400"></span><a href="https://shopdunk.com/"><span style="font-weight:400"></span></a><span style="font-weight:400"></span></p><p>&nbsp;</p></div><div class="all_cross-sells list-prd-detail"></div><div class="fieldset new-comment" id="comments"><div class="title"><strong></strong></div><div class="notifications"></div><form method="post" action="/tieu-diem-cuoi-nam-2023-tong-hop-san-pham-moi-cua-apple"><div class="form-fields"><div class="inputs"> <span class="field-validation-valid" data-valmsg-for="AddNewComment.CommentTitle" data-valmsg-replace="true"></span></div><div class="inputs"><span class="field-validation-valid" data-valmsg-for="AddNewComment.CommentText" data-valmsg-replace="true"></span></div><div class="captcha-box"><script>var onloadCallbackcaptcha_1537754299=function(){grecaptcha.render("captcha_1537754299",{sitekey:"6LcXUmEkAAAAAKzfE5n-_q9I4ojdMDPuf0M1_peS",theme:"light"})}</script><div id="captcha_1537754299"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-sl1d3vm0tg10" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcXUmEkAAAAAKzfE5n-_q9I4ojdMDPuf0M1_peS&amp;co=aHR0cHM6Ly9zaG9wZHVuay5jb206NDQz&amp;hl=vi&amp;v=rz4DvU-cY2JYCwHSTck0_qm-&amp;theme=light&amp;size=normal&amp;cb=9isy6g5al9ic"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div><script async="" defer="" src="https://www.google.com/recaptcha/api.js?onload=onloadCallbackcaptcha_1537754299&amp;render=explicit&amp;hl=vi"></script></div><div class="buttons"><button type="submit" name="add-comment" class="button-1 news-item-add-comment-button once-submit-button">Gửi</button></div></div><input name="__RequestVerificationToken" type="hidden" value="CfDJ8B7DtOk6EVBKn4CdR3Vt9Bo58YH4GopPE0oz5yur_rt3uJyrh-0fbFZ_rPEHz8AXz53T6sS8wBLlugD0H5iOSM_Jy2-NTOVKBne5TljGS9dbpyWkPfdLM90XtcMXkykjzn9O5Snuq8d8QKVL1d9drzo"></form></div><div class="all_cross-sells prd-detail">
-
-                        </div>
-                    </div>
-                </div>
+    <div class="blog-container">
+        <div class="blog-img">
+            {% if blog.image_file %}
+            <img src="{{ blog.image_file.url }}" alt="Blog image">
+            {% elif blog.image_url %}
+            <img src="{{ blog.image_url }}" alt="Blog image">
+            {% else %}
+            <img src="{% static 'images/default_blog_image.png' %}" alt="Default Blog image">
+            {% endif %}
         </div>
-    </section>
+        <div class="blog-box">
+            <div itemscope="" itemtype="https://schema.org/NewsArticle">
+                <div class="blog-detail-item">
+                    <h1 itemprop="headline" id="toc-title">{{ blog.blogTitle }}</h1>
+                </div>
+                <meta itemprop="image" content="{{ blog.image_url }}">
+                <meta itemprop="description" content="{{ blog.blogContent }}">
+                <meta itemprop="url" content="{{ request.build_absolute_uri }}">
+                <meta itemprop="dateModified" content="{{ blog.blogDate|date:'Y-m-d' }}">
+                <div class="news-date">
+                    <span itemprop="datePublished" content="{{ blog.blogDate|date:'Y-m-d' }}"> {{ blog.blogDate|date:'d/m/Y' }} </span>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="news-body">
+                    {{ blog.blogContent|safe }}
+                </div>
+                <div class="blog-details-section">
+                    {% for detail in blog_details %}
+                    <div class="blog-detail-item">
+                        <h2>{{ detail.blogDelTitle }}</h2>
+                        {% if detail.image_file %}
+                        <img src="{{ detail.image_file.url }}" alt="Detail image">
+                        {% elif detail.image_url %}
+                        <img src="{{ detail.image_url }}" alt="Detail image">
+                        {% endif %}
+                        <p>{{ detail.description|safe }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock main-content %}

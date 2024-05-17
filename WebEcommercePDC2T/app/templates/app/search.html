@@ -20,34 +20,43 @@
       </div>
     </h5> <br />
 
+    <!-- Swiper -->
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
-        {% for product in keys %}
-        <div class="swiper-slide">
-          <div class="card">
-            <div class="card_top">
-              <a href="{% url 'productDetail' proName=product.proName %}">
-                {% with product.image_set.first as first_image %}
-                  <img src="{{ first_image.image }}" alt="" class="card_img" />
-                {% endwith %}
-              </a>
-              <div class="card_top_icons">
-                <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
-                <a href="{% url 'productDetail' proName=product.proName %}"><i class="uil uil-eye card_top_icon"></i></a>
+          {% for product in keys %}
+          {% if forloop.counter0|divisibleby:4 %} <!-- Check if index is divisible by 4 -->
+      </div> <!-- Close previous swiper-slide -->
+
+      <div class="swiper-wrapper"> 
+          {% endif %}
+          <div class="swiper-slide">
+              <div class="card">
+                  <div class="card_top">
+                      <a href="{% url 'productDetail' proName=product.proName %}">
+                          {% with product.image_set.first as first_image %}
+                          <img src="{{ first_image.image_url }}" alt="" class="card_img" />
+                          {% endwith %}
+                      </a>
+                      <div class="card_top_icons">
+                          <a href="#"><i class="uil uil-heart card_top_icon"></i></a>
+                          <a href="{% url 'productDetail' proName=product.proName %}"><i class="uil uil-eye card_top_icon"></i></a>
+                      </div>
+                  </div>
+                  <div class="card_body">
+                      <h3 class="card_title">{{ product.proName }}</h3>
+                      <p class="card_price">{{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
+                  </div>
               </div>
-            </div>
-            <div class="card_body">
-              <h3 class="card_title">{{ product.proName }}</h3>
-              <p class="card_price">{{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
-            </div>
           </div>
-        </div>
-        {% endfor %}
+          
+          {% if forloop.last or forloop.counter0|add:1|divisibleby:4 %} <!-- Check if it's the last product or next index is divisible by 4 -->
+
+          {% endif %}
+          {% endfor %}
       </div>
-      <div class="swiper-pagination"></div>
-    </div>
-    {% endblock search %}
-    
+  </div>
+  {% endblock search %}
+
 </body>
 
     <script src="{% static "js/main_login.js" %}" type="text/javascript"></script>

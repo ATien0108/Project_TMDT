@@ -1,4 +1,6 @@
-{% extends "app/base.html" %} {% load static %} {% block main-content %}
+{% extends "app/base.html" %}
+{% load static %}
+{% block main-content %}
 <head>
   <!-- For this page -->
   <link rel="stylesheet" href="{% static "css/productDetail.css" %}" />
@@ -9,25 +11,14 @@
     <div class="product-div">
       <div class="product-div-left">
         <div class="img-container">
-          <img src="images/iphone-15-pro-max_3.png" alt="IPhone" />
+          {% with product.image_set.first as first_image %}
+            <img src="{{ first_image.image_url }}" alt="{{ product.proName }}" class="card_img" />
+          {% endwith %}
         </div>
-        <div class="hover-container">
-          <div><img src="images/iphone-15-pro-max_3.png" /></div>
-          <div><img src="images/iphone-15-pro-max_3.png" /></div>
-          <div><img src="images/iphone-15-pro-max_3.png" /></div>
-          <div><img src="images/iphone-15-pro-max_3.png" /></div>
-          <div><img src="images/iphone-15-pro-max_3.png" /></div>
-        </div>
-      </div>
-      <div class="product-div-right">
-        <span class="product-name"
-          >iPhone 15 Pro Max 256GB | Chính hãng VN/A</span
-        >
-        <span class="product-price">500.000VNĐ</span>
-        <p class="product-description">
-          Apple iPhone 15 Released 2023, September 22 171g, 7.8mm thickness iOS
-          17, up to iOS 17.4 128GB/256GB/512GB storage, no card slot
-        </p>
+
+        <p class="product-name">{{ product.proName }}</p>
+        <p class="product-price">Giá: {{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
+        <p class="product-description">{{ product.proDescription }}</p>
         <div class="btn-groups">
           <button type="button" class="add-cart-btn">
             <i class="fas fa-shopping-cart"></i>add to cart
@@ -36,29 +27,26 @@
             <i class="fas fa-wallet"></i>buy now
           </button>
         </div>
+      </div>
+
+      <div class="product-div-right">
         <div class="product-specs">
-          <h3>Thông số kỹ thuật</h3>
-          <table>
-            <tr>
-              <td>Trọng lượng</td>
-              <td>171g</td>
-            </tr>
-            <tr>
-              <td>Độ dày</td>
-              <td>7.8mm</td>
-            </tr>
-            <tr>
-              <td>Hệ điều hành</td>
-              <td>iOS 17</td>
-            </tr>
-            <tr>
-              <td>Bộ nhớ trong</td>
-              <td>128GB/256GB/512GB</td>
-            </tr>
-            <tr>
-              <td>Thẻ nhớ</td>
-              <td>Không</td>
-            </tr>
+          <h3 class="spec-title">Thông số kỹ thuật</h3>
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Specification</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for spec in product_specs %}
+                <tr>
+                  <td>{{ spec.title }}</td>
+                  <td>{{ spec.spec }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
           </table>
         </div>
       </div>

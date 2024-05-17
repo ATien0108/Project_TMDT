@@ -17,15 +17,18 @@ urlpatterns = [
     path('password_reset_complete/', auth_views.PasswordResetCompleteView.as_view(template_name='app/password_reset_complete.html'), name= 'password_reset_complete'),
 
     path('search/', views.search, name= 'search'),
-    path('<str:cateName>/price/<str:price_range>/', views.product, name="product_price_filter"),
+    path('<str:cateName>/price/<str:price_range>/', views.product, name="product_category_price_filter"),
 
     path('blog/', views.blog, name="blog"),
-    path('blogDetail/', views.blogDetail, name="blogDetail"),
+    path('blogDetail/<str:blogTitle>/', views.blogDetail, name='blogDetail'),
+    path('brand/<str:braName>/price/<str:price_range>/', views.brand_product, name="product_brand_price_filter"),
+
     path('checkout/', views.checkout, name="checkout"),
     path('cart/', views.cart, name="cart"),
-    path('product/', views.product, name="product"),
-    path('productDetail/', views.productDetail, name="productDetail"),
-    path('about/', views.about, name="about"),
-    path('contact/', views.contact, name="contact"),
+
+    path('<str:cateName>/', views.product, name="product"),
+    path('brand/<str:braName>/', views.brand_product, name="brand_product"),
+    path('productDetail/<str:proName>/', views.productDetail, name='productDetail'),
+
     path('profile/', views.profile, name="profile"),
 ]
