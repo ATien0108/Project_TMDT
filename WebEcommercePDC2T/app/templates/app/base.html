@@ -67,7 +67,11 @@
             <button><i class="uil uil-search nav_search"></i></button>
           </form>
           <a href="#"><i class="uil uil-heart nav_heart"></i></a>
-          <a href="{% url "cart" %}"><i class="uil uil-shopping-cart nav_cart"></i></a>
+          <a href="{% url "cart" %}">
+            <i class="uil uil-shopping-cart nav_cart"></i>
+            <div class="cart_quantity"  id="cart_quantity">
+            </div>
+          </a>
         </div>
         <span class="hamburger">
           <svg
@@ -165,6 +169,10 @@
     <script src="{% static "js/scrollreveal.js" %}"></script>
     <script src="{% static "js/mobilenav.js" %}"></script>
     <script src="{% static "js/dropdown.js" %}"></script>
+    <script src="{% static "js/base.js" %}"></script>
+    <script>
+      var getcartUrl = "{% url "get_cart_quantity" %}";
+    </script>
   </body>
 </html>
 `

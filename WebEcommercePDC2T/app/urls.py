@@ -24,7 +24,10 @@ urlpatterns = [
     path('brand/<str:braName>/price/<str:price_range>/', views.brand_product, name="product_brand_price_filter"),
 
     path('checkout/', views.checkout, name="checkout"),
+    
     path('cart/', views.cart, name="cart"),
+    path('cart-quantity/', views.get_cart_quantity, name='get_cart_quantity'),
+    
 
     path('<str:cateName>/', views.product, name="product"),
     path('brand/<str:braName>/', views.brand_product, name="brand_product"),

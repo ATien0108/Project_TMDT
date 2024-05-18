@@ -18,7 +18,7 @@
       <div class="cart_items_container">
         <div class="cart_heading">
           <div class="header_text">Cart</div>
-          <a href="#" class="remove_text"> Clear cart </a>
+          <a class="remove_text" onclick="removeCart()"> Clear cart </a>
         </div>
         <div class="cart_sub_heading">
           <div>Product</div>
@@ -28,79 +28,42 @@
             <!-- Blank for removing check -->
           </div>
         </div>
-        <div class="cart_item">
+      {% for item, product in cart_items %}
+      <div class="cart_item" id="{{ item.cartItem_id }}">
           <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
-          <div>Iphone 15 Pro Max</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-minus"></i>
+          <div>{{product.proName}}</div>
+          <a class="subadd_button minus_button" style="cursor: pointer" onclick="updateQuantity('{{ item.cartItem_id }}', 'minus')">
+              <i class="fas fa-minus"></i>
           </a>
-          <div>1</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-plus"></i>
+          <div id="quantity_{{ item.cartItem_id }}" class='quantity'>{{item.quantity}} </div>
+          <a class="subadd_button plus_button" onclick="updateQuantity('{{ item.cartItem_id }}', 'plus')">
+              <i class="fas fa-plus"></i>
           </a>
-          <div>$8.99</div>
-          <a href="#"> X </a>
-        </div>
-        <div class="cart_item">
-          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
-          <div>Iphone 15 Pro Max</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-minus"></i>
-          </a>
-          <div>1</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-plus"></i>
-          </a>
-          <div>$8.99</div>
-          <a href="#"> X </a>
-        </div>
-        <div class="cart_item">
-          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
-          <div>Iphone 15 Pro Max</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-minus"></i>
-          </a>
-          <div>1</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-plus"></i>
-          </a>
-          <div>$8.99</div>
-          <a href="#"> X </a>
-        </div>
-        <div class="cart_item">
-          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
-          <div>Iphone 15 Pro Max</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-minus"></i>
-          </a>
-          <div>1</div>
-          <a href="#" class="subadd_button">
-            <i class="fas fa-plus"></i>
-          </a>
-          <div>$8.99</div>
-          <a href="#"> X </a>
-        </div>
+          <div class= "price">{{product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ"}}</div>
+          <a onclick="removeItem('{{ item.cartItem_id }}')"> X </a>
+      </div>
+      {% endfor %}
       </div>
       <div class="payment_details_container">
         <div class="header_text">Payment Details</div>
         <div class="sub_payment_details">
           <div>Subtotal</div>
-          <div>$8.99</div>
+          <div id="subtotal"></div>
         </div>
-        <div class="sub_payment_details">
+        {% comment %} <div class="sub_payment_details">
           <div>Ship</div>
           <div>$2.0</div>
         </div>
         <div class="sub_payment_details">
           <div>Tax</div>
           <div>$1.0</div>
-        </div>
+        </div> {% endcomment %}
         <div class="breakline">
           <!-- Break Beetween Contents -->
         </div>
         <div class="main_payment_details">
           <div>Total</div>
-          <div>$11.99</div>
+          <div id="total"></div>
         </div>
         <a href="{% url "checkout" %}" class="checkout_button">
           Continue to checkout
@@ -110,4 +73,13 @@
   </div>
 </section>
 
+<form id="csrf-form">
+  {% csrf_token %}
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static "js/cart.js" %}"></script>
+<script>
+  var cartUrl = "{% url "cart" %}";
+</script>
 {% endblock main-content %}

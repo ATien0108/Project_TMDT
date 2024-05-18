@@ -275,3 +275,19 @@ p {
 .mobile_nav_hide {
     display: none;
 }
+
+/* For counting cart item */
+.cart_quantity{
+    position: absolute;
+    z-index: 1;
+    background-color: red;
+    padding-top: 0.2rem;
+    padding-bottom: 0.1rem;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 1rem;
+    transform: translateX(24px) translateY(-37px);
+    display: none;
+}

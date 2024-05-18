@@ -21,7 +21,7 @@ from .models import Product, Category, Brand
 from django.contrib.auth.hashers import check_password
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
-
+from django.http import QueryDict   
 
 # Create your views here.
 def home(request):
@@ -108,7 +108,76 @@ def checkout(request):
     return render(request, 'app/checkout.html')
 
 def cart(request):
-    return render(request, 'app/cart.html')
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            user_cart_items = CartItem.objects.filter(user=request.user)
+        
+            cart_items = []
+            for cart_item in user_cart_items:
+                product = Product.objects.get(pk=cart_item.pro_id)
+                cart_items.append((cart_item, product))
+            
+            context = {
+                'cart_items': cart_items
+            }
+            return render(request, 'app/cart.html', context)
+        else:
+            return redirect('login')
+
+    elif request.method == 'POST':
+        if request.user.is_authenticated:
+            product_id = request.POST.get('product_id') 
+            quantity = int(request.POST.get('quantity', 1))
+            product = get_object_or_404(Product, pk=product_id)
+            
+            user = request.user
+            cart_item = CartItem.objects.filter(user_id=user.id, pro_id=product.pro_id).first()
+            
+            if cart_item is not None:
+                cart_item.quantity += quantity
+                cart_item.save()
+            else:
+                cart_item = CartItem.objects.create(user_id=user.id, pro_id=product.pro_id, quantity=quantity)
+            
+            unique_item_count = CartItem.objects.filter(user=user).count()
+            return JsonResponse({'message': 'Product added to cart successfully.', 'unique_item_count': unique_item_count})
+        else:
+            return JsonResponse({'redirect': '/login/'})
+
+    elif request.method == 'PUT':
+        put_data = QueryDict(request.body)
+
+        cart_item_id = put_data.get('cart_item_id')
+        new_quantity = int(put_data.get('new_quantity', 1))
+
+        cart_item = get_object_or_404(CartItem, cartItem_id=cart_item_id)
+        cart_item.quantity = new_quantity
+        cart_item.save()
+        
+        unique_item_count = CartItem.objects.filter(user=request.user).count()
+        return JsonResponse({'success': True, 'unique_item_count': unique_item_count})
+
+    elif request.method == 'DELETE':
+        put_data = QueryDict(request.body)
+
+        if 'clear_cart' in put_data:
+            user = request.user
+            CartItem.objects.filter(user=user).delete()
+            return JsonResponse({'success': True, 'unique_item_count': 0})
+        else:
+            cart_item_id = put_data.get('cart_item_id')
+            cart_item = get_object_or_404(CartItem, cartItem_id=cart_item_id)
+            cart_item.delete()
+            
+            unique_item_count = CartItem.objects.filter(user=request.user).count()
+            return JsonResponse({'success': True, 'unique_item_count': unique_item_count})
+
+    else:
+        return HttpResponseNotAllowed(['GET', 'POST', 'PUT', 'DELETE'])
+
+def get_cart_quantity(request):
+    cart_quantity = CartItem.objects.filter(user=request.user).count() if request.user.is_authenticated else 0
+    return JsonResponse({'cart_quantity': cart_quantity})
 
 def product(request, cateName, price_range=None):
     category = get_object_or_404(Category, cateName=cateName)

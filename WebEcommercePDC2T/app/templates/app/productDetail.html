@@ -20,7 +20,7 @@
         <p class="product-price">Giá: {{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
         <p class="product-description">{{ product.proDescription }}</p>
         <div class="btn-groups">
-          <button type="button" class="add-cart-btn">
+          <button type="button" class="add-cart-btn" onClick="addToCart({{ product.pro_id }})">
             <i class="fas fa-shopping-cart"></i>add to cart
           </button>
           <button type="button" class="buy-now-btn">
@@ -53,4 +53,10 @@
     </div>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static "js/productDetail.js" %}"></script>
+<script>
+  var cartUrl = "{% url "cart" %}";
+</script>
 {% endblock main-content %}
