@@ -17,7 +17,7 @@
         </div>
 
         <p class="product-name">{{ product.proName }}</p>
-        <p class="product-price">Giá: {{ product.proPrice|stringformat:"f"|floatformat:0|add:" VNĐ" }}</p>
+        <p class="product-price">Giá: {{ product.proPrice|stringformat:"f"|floatformat:0|add:" ₫" }}</p>
         <p class="product-description">{{ product.proDescription }}</p>
         <div class="btn-groups">
           <button type="button" class="add-cart-btn" onClick="addToCart({{ product.pro_id }})">

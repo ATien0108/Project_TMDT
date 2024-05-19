@@ -10,6 +10,9 @@ urlpatterns = [
     path('login/', views.login, name="login"),
     path('signup/', views.signup, name="signup"),
     path('logout/', views.logoutPage, name= 'logout'),
+    path('about/', views.about, name="about"),
+    path('contact/', views.contact, name="contact"),
+    path('profile/', views.profile, name="profile"),
 
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='app/password_reset_form.html'), name= 'password_reset'),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='app/password_reset_done.html'), name= 'password_reset_done'),
@@ -28,10 +31,7 @@ urlpatterns = [
     path('cart/', views.cart, name="cart"),
     path('cart-quantity/', views.get_cart_quantity, name='get_cart_quantity'),
     
-
     path('<str:cateName>/', views.product, name="product"),
     path('brand/<str:braName>/', views.brand_product, name="brand_product"),
     path('productDetail/<str:proName>/', views.productDetail, name='productDetail'),
-
-    path('profile/', views.profile, name="profile"),
 ]

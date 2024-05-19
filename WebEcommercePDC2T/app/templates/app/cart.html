@@ -30,7 +30,15 @@
         </div>
       {% for item, product in cart_items %}
       <div class="cart_item" id="{{ item.cartItem_id }}">
-          <img class="cart_item_img" src="{% static "images/iphone-15-pro-max_3.png" %}" />
+          {% with product.image_set.first as first_image %}
+          <a href="{% url 'productDetail' proName=product.proName %}">
+                <img class="cart_item_img"
+                  src="{{ first_image.image_url }}"
+                  alt=""
+                  class="card_img"
+                />
+          {% endwith %}
+          </a>
           <div>{{product.proName}}</div>
           <a class="subadd_button minus_button" style="cursor: pointer" onclick="updateQuantity('{{ item.cartItem_id }}', 'minus')">
               <i class="fas fa-minus"></i>

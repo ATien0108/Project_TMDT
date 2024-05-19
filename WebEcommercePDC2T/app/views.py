@@ -107,6 +107,12 @@ def logoutPage(request):
 def checkout(request):
     return render(request, 'app/checkout.html')
 
+def about(request):
+    return render(request, 'app/about.html')
+
+def contact(request):
+    return render(request, 'app/contact.html')
+
 def cart(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
@@ -228,7 +234,6 @@ def productDetail(request, proName):
     }
     
     return render(request, 'app/productDetail.html', context)
-
 
 def profile(request):
     return render(request, 'app/profile.html')

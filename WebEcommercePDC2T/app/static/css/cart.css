@@ -43,6 +43,7 @@
 .remove_text {
     justify-self: end;
     color: #db4444;
+    cursor: pointer;
 }
 
 .cart_sub_heading {
@@ -92,6 +93,7 @@
 .cart_item>a:nth-child(5) {
     margin-left: 2.5rem;
     color: #000000;
+    cursor: pointer;
 }
 
 .cart_item>div:nth-child(6) {
@@ -102,6 +104,7 @@
 .cart_item>a:nth-child(7) {
     margin-left: 8.5rem;
     color: #db4444;
+    cursor: pointer;
 }
 
 .cart_item_img {
@@ -151,4 +154,8 @@
     background-color: #000000;
     color: #f2f2f2;
     padding: 15px 20px 15px 20px;
+}
+
+#total {
+    color: red;
 }
