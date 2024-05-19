@@ -164,35 +164,14 @@
     </div>
     <h3 class="section_title">Browse By Brand</h3>
     <div class="brands">
+      {% for brand in brands %}
       <div class="brand">
-        <a href="{% url 'brand_product' braName='Samsung' %}">
-          <img src="{% static "images/samsung.png" %}" alt="" class="brand_icon"
-          />
-          <p class="brand_name">SAMSUNG</p>
+        <a href="{% url 'brand_product' braName=brand.braName %}">
+          <img src="media/{{ brand.braImage }}" alt="" class="brand_icon" />
+          <p class="brand_name">{{ brand.braName }}</p>
         </a>
       </div>
-
-      <div class="brand">
-        <a href="{% url 'brand_product' braName='Logitech' %}">
-          <img src="{% static "images/logitech.png" %}" alt=""
-          class="brand_icon" />
-          <p class="brand_name">LOGITECH</p>
-        </a>
-      </div>
-
-      <div class="brand">
-        <a href="{% url 'brand_product' braName='Sony' %}">
-          <img src="{% static "images/sony.png" %}" alt="" class="brand_icon" />
-          <p class="brand_name">SONY</p>
-        </a>
-      </div>
-
-      <div class="brand">
-        <a href="{% url 'brand_product' braName='LG' %}">
-          <img src="{% static "images/lg.png" %}" alt="" class="brand_icon" />
-          <p class="brand_name">LG</p>
-        </a>
-      </div>
+      {% endfor %}
     </div>
   </div>
 </section>

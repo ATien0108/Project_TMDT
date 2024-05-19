@@ -63,6 +63,11 @@
     margin-top: 5rem;
 }
 
+.intro img {
+    width: 45%;
+    height: 50%;
+}
+
 .all-text {
     width: 600px;
     max-width: 100%;

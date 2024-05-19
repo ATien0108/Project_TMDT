@@ -286,8 +286,14 @@ admin.site.register(Order, OrderAdmin)
 # admin.site.register(Payment, PaymentAdmin)
 
 class PaymentMethodAdmin(admin.ModelAdmin):
-    list_display = ('payMethod_id', 'payName', 'description')
+    list_display = ('payMethod_id', 'payName', 'description', 'display_image')
     search_fields = ('payName', 'description')
+
+    def display_image(self, obj):
+        if obj.payImage:
+            return format_html('<img src="{}" width="60" height="60" />', obj.payImage.url)
+        return 'No Image'
+    display_image.short_description = 'Image'
 
 admin.site.register(PaymentMethod, PaymentMethodAdmin)
 

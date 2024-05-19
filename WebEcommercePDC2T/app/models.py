@@ -113,6 +113,7 @@ class PaymentMethod(models.Model):
     payMethod_id = models.BigAutoField(primary_key=True)
     payName = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
+    payImage = models.ImageField(upload_to="payment_method_images/", blank=True, null=True)
 
     def __str__(self):
         return self.payName

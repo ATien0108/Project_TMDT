@@ -1,23 +1,19 @@
 from django.db import connection
 from django.http import JsonResponse
-import numpy as np
 import matplotlib.pyplot as plt
 from httpx import Auth
-import os
 from django.conf import settings
 from .models import *
-import mpld3
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash, authenticate, login as auth_login, logout
-from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.models import Group
-from datetime import datetime
+from datetime import datetime, date
 from .forms import *
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.urls import reverse_lazy
-from .models import Product, Category, Brand
+from .models import Product, Category, Brand, CartItem, PaymentMethod, Order, OrderItem, InforDelivery, Payment
 from django.contrib.auth.hashers import check_password
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
@@ -104,8 +100,111 @@ def logoutPage(request):
     logout(request)
     return redirect('login')
 
+@login_required
 def checkout(request):
-    return render(request, 'app/checkout.html')
+    user = request.user
+    cart_items = CartItem.objects.filter(user=user)
+    payment_methods = PaymentMethod.objects.all()
+
+    # Calculate order summary
+    subtotal = sum(item.pro.proPrice * item.quantity for item in cart_items)
+    shipping = 2.0  # example shipping cost
+    tax = 1.0  # example tax cost
+    total = subtotal + shipping + tax
+
+    cart_items_with_images = []
+    for item in cart_items:
+        images = item.pro.image_set.all()
+        if images.exists():
+            image_url = images[0].image_file.url if images[0].image_file else images[0].image_url
+        else:
+            image_url = None  # or set a default image URL
+        cart_items_with_images.append((item, image_url))
+
+    if request.method == "POST":
+        # Get user input data from the form
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        street = request.POST.get('street')
+        phone_number = request.POST.get('phone_number')
+        district = request.POST.get('district')
+        province = request.POST.get('province')
+        payment_method_id = request.POST.get('payment_method')
+
+        # Check for missing fields
+        required_fields = ['first_name', 'last_name', 'email', 'street', 'phone_number', 'district', 'province', 'payment_method_id']
+        if not all(request.POST.get(field) for field in required_fields):
+            return render(request, 'app/checkout.html', {
+                'cart_items_with_images': cart_items_with_images,
+                'payment_methods': payment_methods,
+                'subtotal': subtotal,
+                'shipping': shipping,
+                'tax': tax,
+                'total': total,
+                'error': 'All fields are required.'
+            })
+
+        try:
+            # Create Order
+            order = Order.objects.create(
+                user=user,
+                orderDate=date.today(),
+                orderStatus='pending'
+            )
+
+            # Create OrderItems
+            for cart_item in cart_items:
+                OrderItem.objects.create(
+                    order=order,
+                    pro=cart_item.pro,
+                    proPrice=cart_item.pro.proPrice,
+                    proQuantity=cart_item.quantity
+                )
+
+            # Create Payment
+            payment_method = PaymentMethod.objects.get(id=payment_method_id)
+            payment = Payment.objects.create(
+                order=order,
+                paymentDate=date.today(),
+                paymentStatus='unpaid',
+                payMethod=payment_method
+            )
+
+            # Create InforDelivery
+            infor_delivery = InforDelivery.objects.create(
+                order=order,
+                receiverName=f"{first_name} {last_name}",
+                province=province,
+                district=district,
+                street=street,
+                phoneNumber=phone_number
+            )
+
+            # Clear cart items
+            cart_items.delete()
+
+            messages.success(request, 'Your order has been placed successfully!')
+            return redirect('home')  # Redirect to a success page or home
+
+        except Exception as e:
+            # Rollback: Delete the order, payment, and delivery information if an error occurs
+            order.delete() if order else None
+            payment.delete() if payment else None
+            infor_delivery.delete() if infor_delivery else None
+
+            error_message = f'Error processing order: {str(e)}'
+            messages.error(request, error_message)
+
+    context = {
+        'cart_items_with_images': cart_items_with_images,
+        'payment_methods': payment_methods,
+        'subtotal': subtotal,
+        'shipping': shipping,
+        'tax': tax,
+        'total': total
+    }
+    return render(request, 'app/checkout.html', context)
 
 def about(request):
     return render(request, 'app/about.html')
