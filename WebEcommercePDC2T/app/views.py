@@ -10,9 +10,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from datetime import datetime, date
 from .forms import *
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.urls import reverse_lazy
+from django.utils import timezone
 from .models import Product, Category, Brand, CartItem, PaymentMethod, Order, OrderItem, InforDelivery, Payment
 from django.contrib.auth.hashers import check_password
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -108,8 +110,8 @@ def checkout(request):
 
     # Calculate order summary
     subtotal = sum(item.pro.proPrice * item.quantity for item in cart_items)
-    shipping = 2.0  # example shipping cost
-    tax = 1.0  # example tax cost
+    shipping = 20000.0  # example shipping cost
+    tax = 10000.0  # example tax cost
     total = subtotal + shipping + tax
 
     cart_items_with_images = []
@@ -122,79 +124,58 @@ def checkout(request):
         cart_items_with_images.append((item, image_url))
 
     if request.method == "POST":
-        # Get user input data from the form
-        first_name = request.POST.get('first_name')
-        last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        street = request.POST.get('street')
-        phone_number = request.POST.get('phone_number')
-        district = request.POST.get('district')
-        province = request.POST.get('province')
-        payment_method_id = request.POST.get('payment_method')
+        # Extracting data from the POST request
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        street = request.POST['street']
+        phone_number = request.POST['phone_number']
+        district = request.POST['district']
+        province = request.POST['province']
+        payment_method_id = request.POST['payment_method']
+        print(payment_method_id)
 
-        # Check for missing fields
-        required_fields = ['first_name', 'last_name', 'email', 'street', 'phone_number', 'district', 'province', 'payment_method_id']
-        if not all(request.POST.get(field) for field in required_fields):
-            return render(request, 'app/checkout.html', {
-                'cart_items_with_images': cart_items_with_images,
-                'payment_methods': payment_methods,
-                'subtotal': subtotal,
-                'shipping': shipping,
-                'tax': tax,
-                'total': total,
-                'error': 'All fields are required.'
-            })
+        # Creating Order
+        order = Order.objects.create(
+            user=user,
+            orderDate=timezone.now(),
+            orderStatus='pending'  # Set initial status to 'pending'
+        )
 
-        try:
-            # Create Order
-            order = Order.objects.create(
-                user=user,
-                orderDate=date.today(),
-                orderStatus='pending'
-            )
-
-            # Create OrderItems
-            for cart_item in cart_items:
-                OrderItem.objects.create(
-                    order=order,
-                    pro=cart_item.pro,
-                    proPrice=cart_item.pro.proPrice,
-                    proQuantity=cart_item.quantity
-                )
-
-            # Create Payment
-            payment_method = PaymentMethod.objects.get(id=payment_method_id)
-            payment = Payment.objects.create(
+        # Creating OrderItems
+        for item in cart_items:
+            OrderItem.objects.create(
                 order=order,
-                paymentDate=date.today(),
-                paymentStatus='unpaid',
-                payMethod=payment_method
+                pro=item.pro,
+                proPrice=item.pro.proPrice,
+                proQuantity=item.quantity
             )
 
-            # Create InforDelivery
-            infor_delivery = InforDelivery.objects.create(
-                order=order,
-                receiverName=f"{first_name} {last_name}",
-                province=province,
-                district=district,
-                street=street,
-                phoneNumber=phone_number
-            )
+        # Creating InforDelivery
+        receiver_name = f"{first_name} {last_name}"
+        InforDelivery.objects.create(
+            receiverName=receiver_name,
+            province=province,
+            district=district,
+            street=street,
+            phoneNumber=phone_number,
+            order=order
+        )
 
-            # Clear cart items
-            cart_items.delete()
+        # Creating Payment
+        payment_method = PaymentMethod.objects.get(pk=payment_method_id)
+        Payment.objects.create(
+            paymentDate=timezone.now(),
+            paymentStatus='unpaid',  # Set initial payment status to 'unpaid'
+            payMethod=payment_method,
+            order=order
+        )
 
-            messages.success(request, 'Your order has been placed successfully!')
-            return redirect('home')  # Redirect to a success page or home
+        # Clear the cart after successful order creation
+        cart_items.delete()
 
-        except Exception as e:
-            # Rollback: Delete the order, payment, and delivery information if an error occurs
-            order.delete() if order else None
-            payment.delete() if payment else None
-            infor_delivery.delete() if infor_delivery else None
-
-            error_message = f'Error processing order: {str(e)}'
-            messages.error(request, error_message)
+        # Redirect to a success page or order confirmation page
+        return redirect('order_success', order_id=order.order_id)
 
     context = {
         'cart_items_with_images': cart_items_with_images,
@@ -205,6 +186,12 @@ def checkout(request):
         'total': total
     }
     return render(request, 'app/checkout.html', context)
+
+def order_success(request, order_id):
+    context = {
+        'order_id': order_id
+    }
+    return render(request, 'app/order_success.html', context)
 
 def about(request):
     return render(request, 'app/about.html')

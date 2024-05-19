@@ -1,4 +1,3 @@
-<!-- app/checkout.html -->
 {% extends "app/base.html" %}
 {% load static %}
 {% block main-content %}
@@ -28,40 +27,35 @@
                 <input type="text" name="last_name" placeholder="Last Name" required />
               </div>
               <input class="form_input" type="email" name="email" placeholder="Email" required />
-            </form>
           </div>
           <div class="checkout_item" onclick="toggleForm('address_form')">
             <div>Shipping Address</div>
             <a id="toggle_address_form"> ▼ </a>
           </div>
           <div class="form_container" id="address_form">
-            <form id="checkout_form" action="{% url 'checkout' %}" method="post">
-              {% csrf_token %}
               <div class="form_double_input">
                 <input type="text" name="street" placeholder="Street" required />
                 <input type="tel" name="phone_number" placeholder="Phone Number" required />
               </div>
               <input class="form_input" type="text" name="district" placeholder="District" required />
               <input class="form_input" type="text" name="province" placeholder="Province" required />
-            </form>
           </div>
           <div class="checkout_item" onclick="toggleForm('payment_form')">
             <div>Payment Method</div>
             <a id="toggle_payment_form"> ▼ </a>
           </div>
           <div class="form_container" id="payment_form">
-            <form id="contact_form" class="payment_input" action="{% url 'checkout' %}" method="post">
-              {% csrf_token %}
               {% for payment_method in payment_methods %}
               <div class="payment_input_horizontal">
-                <input type="radio" name="payment_method" value="{{ payment_method.id }}" required />
+                <input type="radio" name="payment_method" value="{{ payment_method.payMethod_id }}" required />
                 <img src="media/{{ payment_method.payImage }}" alt="image" class="payment_card" />
                 <div class="payment_text">{{ payment_method.payName }}</div>
               </div>
               <div class="lighter_breakline"></div>
               {% endfor %}
-            </form>
           </div>
+            <button type="submit" class="placeorder_button">Place Order</button>
+            </form>
         </div>
       </div>
       <div class="order_sumary">
@@ -100,7 +94,6 @@
           <div>Total</div>
           <div>${{ total }}</div>
         </div>
-        <div class="placeorder_button" onclick="makeOrder()">Place Order</div>
         <div class="policy_warning">
           <div>By placing an order, you agree to the PDC2T's</div>
           <div>

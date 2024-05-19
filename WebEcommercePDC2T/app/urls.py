@@ -27,6 +27,7 @@ urlpatterns = [
     path('brand/<str:braName>/price/<str:price_range>/', views.brand_product, name="product_brand_price_filter"),
 
     path('checkout/', views.checkout, name="checkout"),
+    path('order-success/<int:order_id>/', views.order_success, name='order_success'),
     
     path('cart/', views.cart, name="cart"),
     path('cart-quantity/', views.get_cart_quantity, name='get_cart_quantity'),
