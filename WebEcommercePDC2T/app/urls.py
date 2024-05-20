@@ -35,4 +35,7 @@ urlpatterns = [
     path('<str:cateName>/', views.product, name="product"),
     path('brand/<str:braName>/', views.brand_product, name="brand_product"),
     path('productDetail/<str:proName>/', views.productDetail, name='productDetail'),
+    path('reviewPage/<int:product_id>/', views.review_Page, name='review_Page'),
+    path('reviewPage/review/<int:product_id>/', views.add_review, name='add_review'),
+
 ]

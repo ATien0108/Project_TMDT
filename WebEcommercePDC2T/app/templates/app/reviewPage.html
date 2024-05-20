@@ -1,0 +1,79 @@
+{% load static %}
+<link
+  href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+  rel="stylesheet"
+/>
+<link href="{% static 'css/reviewPage.css' %}" rel="stylesheet" />
+
+<div class="wrapper">
+  <h3 style="color: Green; font-weight: bold">
+    Khách hàng: {{ request.user.username }}
+  </h3>
+  <h3>Review: {{ product.proName }}</h3>
+  {% with product.image_set.first as first_image %}
+  <img
+    src="{{ first_image.image_url }}"
+    style="height: 150px; width: 150px"
+    alt="{{ product.proName }}"
+  />
+  {% endwith %}
+  <form method="post" action="{% url 'add_review' product_id=product.pro_id %}">
+    {% csrf_token %}
+    <div class="rating">
+      <input type="number" name="rating" hidden />
+      <i
+        class="bx bx-star star"
+        style="--i: 0"
+        onclick="document.getElementsByName('rating')[0].value = 1;"
+      ></i>
+      <i
+        class="bx bx-star star"
+        style="--i: 1"
+        onclick="document.getElementsByName('rating')[0].value = 2;"
+      ></i>
+      <i
+        class="bx bx-star star"
+        style="--i: 2"
+        onclick="document.getElementsByName('rating')[0].value = 3;"
+      ></i>
+      <i
+        class="bx bx-star star"
+        style="--i: 3"
+        onclick="document.getElementsByName('rating')[0].value = 4;"
+      ></i>
+      <i
+        class="bx bx-star star"
+        style="--i: 4"
+        onclick="document.getElementsByName('rating')[0].value = 5;"
+      ></i>
+    </div>
+    <textarea
+      name="content"
+      cols="30"
+      rows="5"
+      placeholder="Your opinion..."
+    ></textarea>
+    <div class="btn-group">
+      <button type="submit" class="btn submit">Submit</button>
+      <button type="button" class="btn cancel" onclick="window.history.back();">
+        Cancel
+      </button>
+    </div>
+  </form>
+
+  {% comment %}
+  <div class="reviews-section">
+    <h3>Customer Reviews</h3>
+    {% for review in reviews %}
+    <div class="review">
+      <p>
+        <strong>{{ review.user.username }}</strong> rated it {{ review.rating }}
+        stars
+      </p>
+      <p>{{ review.content }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endcomment %}
+</div>
+<script type="text/javascript" src="{% static 'js/reviewPage.js' %}"></script>

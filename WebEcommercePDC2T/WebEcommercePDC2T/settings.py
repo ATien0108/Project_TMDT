@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -45,6 +44,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS = [
     'allauth',
+    'jazzmin',
     'allauth.account',
     'allauth.socialaccount',
     'django.contrib.admin',
@@ -55,6 +55,60 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
 ]
+
+JAZZMIN_SETTINGS = {
+    "welcome_sign": "Welcome to PDC2T Administration",
+    "search_model": ["auth.User", "auth.Group"],
+
+    "topmenu_links": [
+
+        # Url được đảo ngược (Có thể thêm quyền)
+        {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
+
+        # url bên ngoài mở trong cửa sổ mới (Có thể thêm quyền)
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+
+        # Ứng dụng với menu thả xuống đến tất cả các trang mô hình của nó (Quyền được kiểm tra đối với các mô hình)
+        {"app": "app"},
+    ],
+
+    "usermenu_links": [
+        {"name": "Support", "url": "https://github.com/farridav/django-jazzmin/issues", "new_window": True},
+        {"model": "auth.user"}
+    ],
+
+    "related_modal_active": True,
+
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "app.Brand": "fas fa-building",
+        "app.Category": "fas fa-tags",
+        "app.Product": "fas fa-box",
+        "app.ProductSpecification": "fas fa-cogs",
+        "app.Image": "fas fa-image",
+        "app.CartItem": "fas fa-shopping-cart",
+        "app.Order": "fas fa-receipt",
+        "app.OrderItem": "fas fa-box-open",
+        "app.InforDelivery": "fas fa-truck",
+        "app.Payment": "fas fa-credit-card",
+        "app.PaymentMethod": "fas fa-money-check",
+        "app.Rating": "fas fa-star",
+        "app.Blog": "fas fa-blog",
+        "app.BlogDetails": "fas fa-file-alt",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "litera",
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

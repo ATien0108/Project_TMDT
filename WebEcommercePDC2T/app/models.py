@@ -123,6 +123,7 @@ class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     pro = models.ForeignKey(Product, on_delete=models.CASCADE)
     content = models.TextField()
+    rating = models.IntegerField(null=True)
 
 class Blog(models.Model):
     blog_id = models.BigAutoField(primary_key=True)

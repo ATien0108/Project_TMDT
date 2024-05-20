@@ -1,9 +1,8 @@
-{% extends "app/base.html" %}
-{% load static %}
-{% block main-content %}
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<!-- For this page -->
 <head>
-  <!-- For this page -->
-  <link rel="stylesheet" href="{% static "css/productDetail.css" %}" />
+  <link rel="stylesheet" href="{% static 'css/productDetail.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/allReviews.css' %}" />
   <title>Product Detail - PDC2T E-Commerce Website</title>
 </head>
 <div class="main-wrapper">
@@ -12,20 +11,35 @@
       <div class="product-div-left">
         <div class="img-container">
           {% with product.image_set.first as first_image %}
-            <img src="{{ first_image.image_url }}" alt="{{ product.proName }}" class="card_img" />
+          <img
+            src="{{ first_image.image_url }}"
+            alt="{{ product.proName }}"
+            class="card_img"
+          />
           {% endwith %}
         </div>
 
         <p class="product-name">{{ product.proName }}</p>
-        <p class="product-price">Giá: {{ product.proPrice|stringformat:"f"|floatformat:0|add:" ₫" }}</p>
+        <p class="product-price">
+          Giá: {{ product.proPrice|stringformat:"f"|floatformat:0|add:" ₫" }}
+        </p>
         <p class="product-description">{{ product.proDescription }}</p>
         <div class="btn-groups">
-          <button type="button" class="add-cart-btn" onClick="addToCart({{ product.pro_id }})">
+          <button
+            type="button"
+            class="add-cart-btn"
+            onClick="addToCart({{ product.pro_id }})"
+          >
             <i class="fas fa-shopping-cart"></i>add to cart
           </button>
           <button type="button" class="buy-now-btn">
             <i class="fas fa-wallet"></i>buy now
           </button>
+          <a href="{% url 'review_Page' product_id=product.pro_id %}">
+            <button type="button" class="review_now_btn">
+              <i class="fas fa-star"></i>Review now
+            </button>
+          </a>
         </div>
       </div>
 
@@ -41,22 +55,39 @@
             </thead>
             <tbody>
               {% for spec in product_specs %}
-                <tr>
-                  <td>{{ spec.title }}</td>
-                  <td>{{ spec.spec }}</td>
-                </tr>
+              <tr>
+                <td>{{ spec.title }}</td>
+                <td>{{ spec.spec }}</td>
+              </tr>
               {% endfor %}
             </tbody>
           </table>
         </div>
+      </div>
+      <div class="product-reviews">
+        <!-- Phần hiển thị đánh giá -->
+        <h3>Đánh giá sản phẩm</h3>
+        {% for review in reviews %}
+        <div class="review">
+          <p>
+            <strong class="review-user">{{ review.user.username }}</strong>
+            đã đánh giá chất lượng sản phẩm
+            <strong class="review-star">{{ review.rating }} sao</strong>
+          </p>
+          <br />
+          <p><strong>Nội dung đánh giá:</strong> {{ review.content }}</p>
+        </div>
+        {% empty %}
+        <p>Chưa có đánh giá nào cho sản phẩm này.</p>
+        {% endfor %}
       </div>
     </div>
   </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static "js/productDetail.js" %}"></script>
+<script src="{% static 'js/productDetail.js' %}"></script>
 <script>
-  var cartUrl = "{% url "cart" %}";
+  var cartUrl = "{% url 'cart' %}";
 </script>
 {% endblock main-content %}

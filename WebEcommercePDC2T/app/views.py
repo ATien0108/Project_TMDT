@@ -313,13 +313,46 @@ def productDetail(request, proName):
     
     product = get_object_or_404(Product, proName = proName)
     product_specs = ProductSpecification.objects.filter(product=product)
+    ratings = Rating.objects.filter(pro=product)
 
     context = {
         'product': product,
         'product_specs': product_specs,
+        'reviews': ratings    
     }
     
     return render(request, 'app/productDetail.html', context)
+
+@login_required
+def review_Page(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    context = {
+        'product': product
+    }
+    return render(request, 'app/reviewPage.html', context)
+
+
+@login_required
+def add_review(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    productName = product.proName
+    if request.method == 'POST':
+        content = request.POST.get('content')
+        rating_value = request.POST.get('rating')
+        
+        if content and rating_value:
+            Rating.objects.create(
+                pro=product,
+                user=request.user,
+                content=content,
+                rating=rating_value
+            )
+            messages.success(request, 'Thank you for your review!')
+        else:
+            messages.error(request, 'Please fill in all fields.')
+
+    return redirect('productDetail', proName=productName)
+
 
 def profile(request):
     return render(request, 'app/profile.html')
