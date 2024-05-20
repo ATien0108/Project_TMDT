@@ -1,0 +1,87 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+  <script
+  src="https://kit.fontawesome.com/6cf5de7db4.js"
+  crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="{%static 'css/aboutDetail.css'%}" />
+  <title>CÁC CHÍNH SÁCH CỦA CHÚNG TÔI</title>
+</head>
+<body>
+<section>
+<div class="wrapper flex_align_justify">
+   <div class="tc_wrap">
+       <div class="tabs_list">
+         <ul>
+           <li data-tc="tab_item_1" class="active">1. LIÊN HỆ BẢO HÀNH SẢN PHẨM</li>
+           <li data-tc="tab_item_2">2. ĐIỀU KIỆN BẢO HÀNH</li>
+           <li data-tc="tab_item_3">3. SẢN PHẨM KHÔNG ĐỦ ĐIỀU KIỆN BẢO HÀNH</li>
+           <li data-tc="tab_item_4">4. CHÍNH SÁCH BẢO HÀNH CHUNG</li>
+         </ul>
+       </div>
+       <div class="tabs_content">
+          <div class="tab_head">
+            <h2>Chính sách bảo hành</h2>
+          </div>
+          <div class="tab_body">
+            <div class="tab_item tab_item_1">
+                <h3>1. LIÊN HỆ BẢO HÀNH SẢN PHẨM</h3>
+                <p>Khi có nhu cầu bảo hành sản phẩm, khách hàng vui lòng liên hệ với GearVN qua các hình thức sau:</p>
+              <p>Gọi tổng đài bảo hành 1800.6975 (nhánh 2).</p>
+              <p>Gửi tin nhắn trực tiếp tại website hoặc fanpage.</p>
+              <p>Mang sản phẩm trực tiếp đến các chi nhánh cửa hàng hoặc Trung tâm bảo hành của GearVN .</p>
+              <p>Mang sản phẩm trực tiếp đến Trung tâm bảo hành của hãng/nhà cung cấp của sản phẩm</p>
+              <p>Lưu ý:</p>
+              <p>Khách hàng cũng có thể gửi sản phẩm bảo hành thông qua đơn vị vận chuyển. GearVN  sau khi tiếp nhận sản phẩm sẽ phản hồi thông tin liên quan đến cho khách hàng. </p>
+              <p>Khách hàng vui lòng liên hệ nhân viên tư vấn trước khi gửi hàng để được hỗ trợ.</p>
+            </div>
+            <div class="tab_item tab_item_2" style="display: none;">
+                <h3>2. ĐIỀU KIỆN BẢO HÀNH</h3>
+              <p>Sản phẩm còn trong thời hạn bảo hành của GearVN; Thời hạn bảo hành được ghi nhận dựa trên thông tin mua hàng, số Serial Number của sản phẩm.:</p>
+              <p>Sản phẩm phải còn tem niêm phong bảo hành hoặc tem của nhà phân phối. Với các sản phẩm cần bảo hành theo hộp, khách hàng phải gửi đầy đủ hộp và phụ kiện đi kèm.</p>
+              <p>Sản phẩm còn nguyên trạng, không trầy xước cấn móp, biến dạng ngoài quy định của hãng/ nhà phân phối.</p>
+              <p>Sản phẩm phát sinh lỗi trong quá trình sử dụng do nhà sản xuất như linh kiện, lỗi kỹ thuật.</p>
+              <p>Lưu ý:</p>
+              <p>Các điều kiện bảo hành cụ thể có thể thay đổi tùy theo từng nhà sản xuất và nhà cung cấp sản phẩm.</p>
+              <p>Dữ liệu (lưu trữ trong sản phẩm: Laptop/ Máy tính để bàn/ Thẻ nhớ/ Ổ cứng…) không thuộc phạm vi bảo hành. Chúng tôi hoàn toàn ý thức được tầm quan trọng của dữ liệu của quý khách hàng và luôn cố gắng hết sức để hỗ trợ - hướng dẫn quý khách hàng trong việc sao lưu dữ liệu. GearVN không chịu trách nhiệm về bất cứ thiệt hại trực tiếp hoặc gián tiếp nào gây ra cho quý khách hàng nếu dữ liệu lưu trong sản phẩm bị tiết lộ, bị mất, bị hư hỏng trong quá trình kiểm tra, xử lý bảo hành.</p>
+              <p>Nên tham khảo kỹ phiếu bảo hành và chính sách bảo hành của nhà sản xuất trước khi sử dụng sản phẩm.</p>
+            </div>
+            <div class="tab_item tab_item_3"  style="display: none;">
+                <h3>3. SẢN PHẨM KHÔNG ĐỦ ĐIỀU KIỆN BẢO HÀNH</h3>
+                <p>Sản phẩm hết hạn bảo hành tại GearVN.</p>
+                <p>Sản phẩm không đầy đủ các thiết bị, linh kiện đi kèm bắt buộc (ví dụ: receiver, adapter…)</p>
+                <p>Sản phẩm không có thông tin mua hàng hoặc không phải do GearVN cung cấp, thông tin sản phẩm không được ghi nhận trên hệ thống của GearVN.</p>
+                <p>Sản phẩm hư hỏng do lỗi người dùng (Rơi vỡ, cấn móp, biến dạng, vô nước … hoặc sử dụng không theo hướng dẫn và chức năng của sản phẩm).</p>
+                <p>Sản phẩm đã có can thiệp sửa chữa, tháo lắp hoặc thay đổi kết cấu từ bên thứ ba chưa được cho phép của GearVN và nhà phân phối sản phẩm.</p>
+                <p>Thông tin sản phẩm (Số Serial/imei/Service Tag) không còn hoặc không trùng khớp với thực tế sản phẩm.</p>
+                <p>Sản phẩm hư hỏng vì các lý do khách quan như thiên tai, hỏa hoạn, động vật, côn trùng hoặc hao mòn do môi trường gây ra.</p>
+            </div>
+            <div class="tab_item tab_item_4"  style="display: none;">
+                <h3>4. CHÍNH SÁCH BẢO HÀNH CHUNG</h3>
+              <p>Tất cả các sản phẩm do GearVN bán ra đều được bảo hành theo quy định của nhà sản xuất/nhà phân phối</p>
+              <p>Tất cả sản phẩm hư hỏng, sẽ được gửi cho nhà sản xuất hoặc đơn vị được nhà sản xuất uỷ quyền để bảo hành theo đúng chính sách bảo hành của nhà sản xuất đưa ra. GearVN không chịu trách nhiệm nếu nhà sản xuất hoặc đơn vị được nhà sản xuất ủy quyền từ chối bảo hành.</p>
+              <p>4.1 Chính sách đổi mới</p>
+              <p>Sản phẩm đổi mới trong 7 ngày:</p>
+              <p>Đối với các sản phẩm lỗi phát sinh do nhà sản xuất hoặc GearVN, khách hàng sẽ được đổi mới trong vòng 7 ngày tính từ ngày mua hàng. Áp dụng với các dòng sản phẩm Laptop, màn hình (Ngoại trừ một số dòng sản phẩm có chính sách bảo hành riêng biệt).</p>
+              <p>Sản phẩm đổi mới trong 30 ngày:</p>
+              <p>Đối với các sản phẩm lỗi phát sinh do nhà sản xuất hoặc GearVN, khách hàng sẽ được đổi mới trong vòng 30 ngày tính từ ngày mua hàng. Áp dụng với các dòng sản phẩm gaming gear (Bàn phím, chuột, tai nghe …) hoặc Linh kiện máy tính (NUC, CPU, RAM, Ổ cứng, tản nhiệt, nguồn, thiết bị khác…)</p>
+              <p>4.2 Thời gian xử lý</p>
+              <p>GearVN cam kết xử lý trong vòng 30 ngày tính từ ngày tiếp nhận sản phẩm. Thông tin tiếp nhận sẽ được thể hiện trong phiếu bảo hành hoặc thông tin đến khách hàng trong trường hợp khách hàng gửi sản phẩm.</p>
+              <p>Nếu sản phẩm sau khi kiểm tra không có phát sinh lỗi, GearVN xin phép hoàn trả sản phẩm sau 3 ngày.</p>
+              <p>Tất cả các sản phẩm đều được áp dụng chính sách bảo hành của nhà sản xuất, nếu thời gian bảo hành có phát sinh do các vấn đề khách quan cũng sẽ được thông tin đầy đủ đến khách hàng.</p>
+              <p>4.3 Xử lý ngoài bảo hành</p>
+              <p>Đối với các sản phẩm do lỗi người dùng, GearVN xin phép từ chối bảo hành.</p>
+              <p>Với các trường hợp phát sinh sửa chữa ngoài điều kiện bảo hành nếu có, khách hàng nếu đồng ý sẽ chịu chi phí sửa chữa.</p>
+              <p>Trường hợp sản phẩm đủ điều kiện bảo hành nhưng không còn linh kiện sửa chữa, sản phẩm đổi trả/thay thế, khách hàng lựa chọn một trong các phương án sau:</p>
+              <p>Đổi sản phẩm tương đương: Sản phẩm cùng nhóm hàng và do GearVN/ hãng sản xuất đề xuất.</p>
+              <p>Thu hồi sản phẩm có khấu hao: Sản phẩm sẽ được thu hồi có tính chi phí khấu hao. Mức khấu hao sẽ do chính sách của hãng sản xuất và GearVN quy định. Tùy vào tình trạng và giá trị của sản phẩm sẽ có các mức khấu hao tương ứng.</p>
+              <p>Khách hàng nhận lại sản phẩm không bảo hành.</p>
+            </div>
+   </div>
+</div>
+
+<script src="{% static "js/aboutDetail.js" %}"></script>
+
+</body>
+</section>
+{% endblock main-content %}

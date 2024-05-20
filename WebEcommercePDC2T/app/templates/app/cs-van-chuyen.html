@@ -1,0 +1,79 @@
+{% extends "app/base.html" %} {% load static %} {% block main-content %}
+<head>
+  <script
+  src="https://kit.fontawesome.com/6cf5de7db4.js"
+  crossorigin="anonymous"
+  ></script>
+  <link rel="stylesheet" href="{%static 'css/aboutDetail.css'%}" />
+  <title>CÁC CHÍNH SÁCH CỦA CHÚNG TÔI</title>
+</head>
+<body>
+<section>
+<div class="wrapper flex_align_justify">
+   <div class="tc_wrap">
+       <div class="tabs_list">
+         <ul>
+           <li data-tc="tab_item_1" class="active">1. PHÍ DỊCH VỤ GIAO HÀNG</li>
+           <li data-tc="tab_item_2">2. THỜI GIAN DỰ KIẾN GIAO HÀNG</li>
+           <li data-tc="tab_item_3">3. MỘT SỐ LƯU Ý KHI NHẬN HÀNG</li>
+         </ul>
+       </div>
+       <div class="tabs_content">
+          <div class="tab_head">
+            <h2>Chính sách vận chuyển</h2>
+          </div>
+          <div class="tab_body">
+            <div class="tab_item tab_item_1">
+                <h3>1. PHÍ DỊCH VỤ GIAO HÀNG</h3>
+                <p>GIAO HÀNG NHANH 2H ĐẾN 4H</p>
+              <p>- Đơn hàng dưới 5 triệu đồng</p>
+              <P>+ Khu vực HCM/HN: 40.000 vnd</P>
+              <p>+ Khu vực Ngoại thành/ Tỉnh: Không áp dụng</p>
+              <p>- Đơn hàng trên 5 triệu đồng</p>
+              <P>+ Khu vực HCM/HN: Miễn phí</P>
+              <p>+ Khu vực Ngoại thành/ Tỉnh: Không áp dụng</p>
+                <p>GIAO HÀNG TIÊU CHUẨN</p>
+                <p>- Đơn hàng dưới 5 triệu đồng</p>
+                <P>+ Khu vực HCM/HN: 25.000 vnd</P>
+                <p>+ Khu vực Ngoại thành/ Tỉnh: 40.000 vnd</p>
+                <p>- Đơn hàng trên 5 triệu đồng</p>
+                <P>+ Khu vực HCM/HN: Miễn phí</P>
+                <p>+ Khu vực Ngoại thành/ Tỉnh: Miễn phí</p>
+            </div>
+            <div class="tab_item tab_item_2" style="display: none;">
+                <h3>2. THỜI GIAN DỰ KIẾN GIAO HÀNG</h3>
+              <p>Thời gian dự kiến giao hàng: phụ thuộc vào kho và địa chỉ nhận hàng của Quý khách. Thời gian dự kiến giao hàng tiêu chuẩn như sau:</p>
+              <p>Tuyến: Hồ Chí Minh - Hồ Chí Minh || Hà Nội - Hà Nội</p>
+              <p>• Khu vực: Nội Thành || Ngoại Thành</p>
+              <p>• Thời gian dự kiến: 1 - 2 ngày</p>
+              <p>Tuyến: Hồ Chí Minh - Miền Nam || Hà Nội - Miền Bắc</p>
+              <p>• Khu vực: Trung tâm Tỉnh, Thành phố, Thị xã || Huyện, xã</p>
+              <p>• Thời gian dự kiến: 3 - 4 ngày || 4 - 5 ngày</p>
+              <p>Tuyến: Hồ Chí Minh - Miền Trung || Hà Nội - Miền Trung</p>
+              <p>• Khu vực: Trung tâm Tỉnh, Thành phố, Thị xã || Huyện, xã</p>
+              <p>• Thời gian dự kiến: 4 - 6 ngày || 5 - 7 ngày</p>
+              <p>Tuyến: Hồ Chí Minh - Miền Bắc || Hà Nội - Miền Nam</p>
+              <p>• Khu vực: Trung tâm Tỉnh, Thành phố, Thị xã || Huyện, xã</p>
+              <p>• Thời gian dự kiến: 5 - 7 ngày</p>
+              <p>***Nội thành Tp.HCM: Quận 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, Bình Tân, Gò Vấp, Thủ Đức, Bình Thạnh, Phú Nhuận, Tân Phú, Tân Bình.</p>
+              <p>***Nội thành Hà Nội: Hoàn Kiếm, Đống Đa, Ba Đình, Hai Bà Trưng, Hoàng Mai, Thanh Xuân, Tây Hồ, Cầu Giấy, Long Biên, Hà Đông, Nam Từ Liêm, Bắc Từ Liêm.</p>
+              <p>Lưu ý:</p>
+              <p>Trong một số trường hợp, hàng hóa không có sẵn tại kho gần nhất, thời gian giao hàng có thể chậm hơn so với dự kiến do điều hàng.</p>
+              <p>Ngày làm việc là từ thứ hai đến thứ 6, không tính thứ 7, Chủ nhật và các ngày nghỉ lễ, tết, nghỉ bù, và không bao gồm các tuyến huyện đảo xa.</p>
+            </div>
+            <div class="tab_item tab_item_3"  style="display: none;">
+                <h3>3. MỘT SỐ LƯU Ý KHI NHẬN HÀNG</h3>
+                <p>Trước khi tiến hành giao hàng cho Quý khách, Hỗ trợ kỹ thuật (HTTK) của GearVN hoặc bưu tá của Đối tác vận chuyển sẽ liên hệ qua số điện thoại của Quý khách trước khoảng 3 đến 5 phút để xác nhận giao hàng.</p>
+                <p>Áp dụng cho đơn hàng giao hàng tiêu chuẩn, nếu Quý khách không thể có mặt trong đợt nhận hàng thứ nhất, bưu tá sẽ cố gắng liên lạc lại thêm ít nhất 2 lần nữa (trong 02 ca giao hàng khác nhau) để sắp xếp thời gian giao hàng, Quý khách vui lòng để ý điện thoại để liên hệ được với bưu tá giao hàng.</p>
+                <p>Khi nhận hàng, Quý khách vui lòng quay lại video quá trình khui nhận hàng hóa. Trong trường hợp Quý khách không đồng ý nhận hàng với xuất phát nguyên nhân từ hàng hóa của GearVN không đảm bảo, không đúng như mô tả,... Đơn hàng của Quý khách sẽ được hoàn lại cho chúng tôi và được hủy trên hệ thống GearVN. </p>
+                <p>Trong trường hợp đơn hàng đang giao đến Quý khách có ngoại quan bên ngoài hộp hàng hóa có dấu hiệu bị rách, móp, ướt, thủng, mất niêm phong,…Quý khách vui lòng kiểm tra kỹ chất lượng sản phẩm bên trong trước khi nhận hàng. Quý khách hoàn toàn có quyền từ chối nhận hàng và báo về cho chúng tôi qua hotline 1800.6173 để được hỗ trợ giao lại đơn hàng mới hoặc hủy đơn hàng.</p>
+                <p>Mọi thông tin về việc thay đổi sản phẩm hay hủy đơn đơn hàng, đề nghị Quý khách thông báo sớm để GearVN có thể điều chỉnh lại đơn hàng.</p>
+            </div>
+   </div>
+</div>
+
+<script src="{% static "js/aboutDetail.js" %}"></script>
+
+</body>
+</section>
+{% endblock main-content %}

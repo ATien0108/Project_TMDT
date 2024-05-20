@@ -38,17 +38,17 @@
       <div class="container nav_container">
         <a href="{% url "home" %}" class="nav_logo">PDC2T</a>
         <ul class="nav_list">
-          <li class="nav_item"><a href="{% url "home" %}" class="nav_link">Home</a></li>
-          <li class="nav_item"><a href="{% url "blog" %}" class="nav_link">Blog</a></li>
-          <li class="nav_item"><a href="{% url "about" %}" class="nav_link">About</a></li>
-          <li class="nav_item"><a href="{% url "contact" %}" class="nav_link">Contact</a></li>
+          <li class="nav_item"><a href="{% url 'home' %}" class="nav_link">Home</a></li>
+          <li class="nav_item"><a href="{% url 'blog' %}" class="nav_link">Blog</a></li>
+          <li class="nav_item"><a href="{% url 'about' %}" class="nav_link">About</a></li>
+          <li class="nav_item"><a href="{% url 'contact' %}" class="nav_link">Contact</a></li>
           {% if user.is_authenticated %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               hello! {{request.user}}
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">Trang cá nhân</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
             </ul>
           </li>
@@ -172,14 +172,14 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="{% static "js/automaticSlideshow.js" %}"></script>
-    <script src="{% static "js/swiper.js" %}"></script>
-    <script src="{% static "js/scrollreveal.js" %}"></script>
-    <script src="{% static "js/mobilenav.js" %}"></script>
-    <script src="{% static "js/dropdown.js" %}"></script>
-    <script src="{% static "js/base.js" %}"></script>
+    <script src="{% static 'js/automaticSlideshow.js' %}"></script>
+    <script src="{% static 'js/swiper.js' %}"></script>
+    <script src="{% static 'js/scrollreveal.js' %}"></script>
+    <script src="{% static 'js/mobilenav.js' %}"></script>
+    <script src="{% static 'js/dropdown.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
     <script>
-      var getcartUrl = "{% url "get_cart_quantity" %}";
+      var getcartUrl = "{% url 'get_cart_quantity' %}";
     </script>
   </body>
 </html>

@@ -3,6 +3,8 @@ from django.http import JsonResponse
 import matplotlib.pyplot as plt
 from httpx import Auth
 from django.conf import settings
+
+from app.decoractor import custom_login_required
 from .models import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash, authenticate, login as auth_login, logout
@@ -354,5 +356,60 @@ def add_review(request, product_id):
     return redirect('productDetail', proName=productName)
 
 
+@custom_login_required
 def profile(request):
-    return render(request, 'app/profile.html')
+    user = request.user
+    context = { 'user': user,
+               'messages': messages.get_messages(request)}
+    return render(request, 'app/profile.html', context)
+
+
+def update_profile(request):
+    if request.method == 'POST':
+        user_id = request.user.id
+        user = User.objects.get(id=user_id)
+
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
+        # Lấy các giá trị mật khẩu từ request
+        old_pass = request.POST.get('old_password')
+        new_pass = request.POST.get('new_password')
+        confirm_pass = request.POST.get('confirm_password')
+
+        # Kiểm tra xem người dùng đã nhập mật khẩu mới hay không
+        if new_pass and confirm_pass:
+            # Kiểm tra mật khẩu cũ
+            if not check_password(old_pass, user.password):
+                # Nếu không trùng khớp, hiển thị thông báo lỗi và chuyển hướng về trang profile
+                messages.error(request, "Old password is incorrect.")
+                return redirect('profile')
+            else:
+                # Kiểm tra mật khẩu mới và mật khẩu xác nhận
+                if new_pass != confirm_pass:
+                    # Nếu không trùng khớp, hiển thị thông báo lỗi và chuyển hướng về trang profile
+                    messages.error(request, "New password and confirm password do not match.")
+                    return redirect('profile')
+                else:
+                    # Cập nhật mật khẩu mới cho người dùng
+                    user.set_password(new_pass)
+                    user.save()
+                    messages.success(request, "Password changed successfully. Please log in again.")
+
+        # Cập nhật thông tin hồ sơ người dùng nếu first_name và last_name được nhập
+        if first_name and last_name:
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+
+    return redirect('profile')
+
+def csBaoMat(request):
+    return render(request, 'app/cs-bao-mat.html')
+
+def csBaoHanh(request):
+    return render(request, 'app/cs-bao-hanh.html')
+
+def csVanChuyen(request):
+    return render(request, 'app/cs-van-chuyen.html')
+

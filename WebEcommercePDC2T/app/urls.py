@@ -13,6 +13,11 @@ urlpatterns = [
     path('about/', views.about, name="about"),
     path('contact/', views.contact, name="contact"),
     path('profile/', views.profile, name="profile"),
+    path('update_file/', views.update_profile, name="update_profile"),
+
+    path('cs-bao-mat/', views.csBaoMat, name='cs-bao-mat'),
+    path('cs-bao-hanh/', views.csBaoHanh, name='cs-bao-hanh'),
+    path('cs-van-chuyen/', views.csVanChuyen, name='cs-van-chuyen'),
 
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='app/password_reset_form.html'), name= 'password_reset'),
     path('password_reset_done/', auth_views.PasswordResetDoneView.as_view(template_name='app/password_reset_done.html'), name= 'password_reset_done'),
